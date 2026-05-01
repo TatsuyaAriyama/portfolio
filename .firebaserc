@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "shelf-app-213ca"
+  },
+  "targets": {
+    "shelf-app-213ca": {
+      "hosting": {
+        "portfolio": [
+          "ariyama-portfolio"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}
