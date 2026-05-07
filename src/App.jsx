@@ -1,19 +1,22 @@
 import { useEffect, useState } from "react";
 import { ArrowUpRight, Camera, Code2, Mail, X } from "lucide-react";
 
-const skills = ["React", "JavaScript", "CSS", "Firebase", "Python", "GitHub"];
+const skills = ["React", "JavaScript", "CSS", "Firebase", "GitHub", "Python"];
+const mainFeatures = [
+  "書籍一覧表示",
+  "貸出 / 返却機能",
+  "読書記録機能",
+  "書籍リクエスト機能",
+  "Activityタイムライン表示",
+  "開発者権限による管理機能",
+  "レスポンシブ対応",
+];
 const reflections = [
   {
-    title: "開発の流れ",
-    text: "書籍管理システムの開発を通して、単に画面や機能を作るだけでなく、要件整理から実装、改善、公開反映まで一連の流れを実践的に学ぶことができました。",
+    text: "この開発を通して、画面作成だけでなく、要件整理から実装、改善、公開反映までの一連の流れを実践的に学びました。",
   },
   {
-    title: "設計で意識したこと",
-    text: "貸出・返却・読書記録・リクエスト・Activityなどの機能を追加していく中で、使う人にとって分かりやすいUI、権限管理、データ設計、運用面まで意識して開発を進める重要性を実感しました。",
-  },
-  {
-    title: "改善を重ねた経験",
-    text: "エラーや不具合が発生した際には、原因を切り分けて修正し、再度反映まで行う経験を重ねました。AIも活用しながら、要件を言語化し、出力内容を調整し、最終的に形にしていく工程を通して、プロダクトを前に進める力を養うことができたと感じています。",
+    text: "また、機能追加を重ねる中で、UI/UXの改善、権限管理、データ設計、運用面まで意識して考える重要性を学びました。",
   },
 ];
 const screenshots = [
@@ -49,13 +52,14 @@ const screenshots = [
   },
 ];
 const storageKey = "portfolioProfileImage";
+const publishedProfileImage = "/profile-photo.jpg";
 
 function App() {
-  const [profileImage, setProfileImage] = useState("");
+  const [profileImage, setProfileImage] = useState(publishedProfileImage);
   const [activeScreenshot, setActiveScreenshot] = useState(null);
 
   useEffect(() => {
-    setProfileImage(localStorage.getItem(storageKey) || "");
+    setProfileImage(localStorage.getItem(storageKey) || publishedProfileImage);
   }, []);
 
   const handleImageChange = (event) => {
@@ -73,8 +77,12 @@ function App() {
   };
 
   const removeImage = () => {
-    setProfileImage("");
+    setProfileImage(publishedProfileImage);
     localStorage.removeItem(storageKey);
+  };
+
+  const handleProfileImageError = () => {
+    setProfileImage("");
   };
 
   const closeScreenshot = () => {
@@ -115,7 +123,11 @@ function App() {
         <aside className="profile-card" aria-label="Profile">
           <div className="photo-frame">
             {profileImage ? (
-              <img src={profileImage} alt="有山達也のプロフィール写真" />
+              <img
+                src={profileImage}
+                alt="有山達也のプロフィール写真"
+                onError={handleProfileImageError}
+              />
             ) : (
               <span>Photo</span>
             )}
@@ -150,24 +162,43 @@ function App() {
         <p className="about-text">
           現在24歳で、昨年12月にIT業界へ転身しました。
           React・Firebaseを用いた社内向けアプリ開発を通じて、
-          要件整理から実装、改善まで一連の流れを学んでいます。
+          要件整理から設計、実装、改善、公開反映まで一連の流れを学んでいます。
           SHELF-APPは、社内の書籍管理と学習習慣づくりを目的に開発しました。
-          AIも活用しながら、使いやすさと運用しやすさを意識した開発を進めています。
+          実際に使う人の動きを想像しながら、貸出・返却、読書記録、リクエスト、
+          Activity表示、管理機能などを段階的に追加しています。
+          開発ではAIも活用し、実装方法を調べるだけでなく、
+          要件の整理やUI改善の方向性を考えながら、使いやすさと運用しやすさを意識して取り組んでいます。
+          今後も基礎を大切にしながら、ユーザーにとって分かりやすく、
+          継続的に改善できるアプリケーション開発を目指しています。
         </p>
       </section>
 
       <section id="skills" className="section">
         <p className="eyebrow">Skills</p>
-        <div className="skills-grid">
-          {skills.map((skill) => (
-            <span className="skill-chip" key={skill}>
-              {skill}
-            </span>
-          ))}
+        <div className="skills-panel">
+          <div className="skills-block">
+            <h2>使用技術</h2>
+            <div className="skills-grid">
+              {skills.map((skill) => (
+                <span className="skill-chip" key={skill}>
+                  {skill}
+                </span>
+              ))}
+            </div>
+            <p className="skill-note">
+              ※ Udemyと書籍を通して、一連の基礎を学びました。
+            </p>
+          </div>
+
+          <div className="skills-block">
+            <h2>主な機能</h2>
+            <ul className="feature-list">
+              {mainFeatures.map((feature) => (
+                <li key={feature}>{feature}</li>
+              ))}
+            </ul>
+          </div>
         </div>
-        <p className="skill-note">
-          UdemyやProgateを活用し、各技術の基礎を一通り学習しております。
-        </p>
       </section>
 
       <section id="projects" className="section">
@@ -224,8 +255,7 @@ function App() {
             </div>
             <div className="reflection-list">
               {reflections.map((reflection) => (
-                <section className="reflection-item" key={reflection.title}>
-                  <h3>{reflection.title}</h3>
+                <section className="reflection-item" key={reflection.text}>
                   <p>{reflection.text}</p>
                 </section>
               ))}
