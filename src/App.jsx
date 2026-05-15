@@ -1,16 +1,6 @@
 import { useState } from "react";
 import { ArrowUpRight, Code2, Mail, X } from "lucide-react";
 
-const skills = ["React", "JavaScript", "CSS", "Firebase", "GitHub", "Python"];
-const mainFeatures = [
-  "書籍一覧表示",
-  "貸出 / 返却機能",
-  "読書記録機能",
-  "書籍リクエスト機能",
-  "Activityタイムライン表示",
-  "開発者権限による管理機能",
-  "レスポンシブ対応",
-];
 const reflections = [
   {
     text: "この開発を通して、画面作成だけでなく、要件整理から実装、改善、公開反映までの一連の流れを実践的に学びました。",
@@ -69,8 +59,6 @@ function App() {
           有山達也
         </a>
         <nav className="nav-links" aria-label="Main navigation">
-          <a href="#about">About</a>
-          <a href="#skills">Skills</a>
           <a href="#github">GitHub</a>
           <a href="#projects">Projects</a>
           <a href="#contact">Contact</a>
@@ -111,50 +99,6 @@ function App() {
             <p>Rookie developer building practical internal tools.</p>
           </div>
         </aside>
-      </section>
-
-      <section id="about" className="section split-section">
-        <p className="eyebrow">About</p>
-        <p className="about-text">
-          現在24歳で、昨年12月にIT業界へ転身しました。
-          React・Firebaseを用いた社内向けアプリ開発を通じて、
-          要件整理から設計、実装、改善、公開反映まで一連の流れを学んでいます。
-          SHELF-APPは、社内の書籍管理と学習習慣づくりを目的に開発しました。
-          実際に使う人の動きを想像しながら、貸出・返却、読書記録、リクエスト、
-          Activity表示、管理機能などを段階的に追加しています。
-          開発ではAIも活用し、実装方法を調べるだけでなく、
-          要件の整理やUI改善の方向性を考えながら、使いやすさと運用しやすさを意識して取り組んでいます。
-          今後も基礎を大切にしながら、ユーザーにとって分かりやすく、
-          継続的に改善できるアプリケーション開発を目指しています。
-        </p>
-      </section>
-
-      <section id="skills" className="section">
-        <p className="eyebrow">Skills</p>
-        <div className="skills-panel">
-          <div className="skills-block">
-            <h2>使用技術</h2>
-            <div className="skills-grid">
-              {skills.map((skill) => (
-                <span className="skill-chip" key={skill}>
-                  {skill}
-                </span>
-              ))}
-            </div>
-            <p className="skill-note">
-              ※ Udemyと書籍を通して、一連の基礎を学びました。
-            </p>
-          </div>
-
-          <div className="skills-block">
-            <h2>主な機能</h2>
-            <ul className="feature-list">
-              {mainFeatures.map((feature) => (
-                <li key={feature}>{feature}</li>
-              ))}
-            </ul>
-          </div>
-        </div>
       </section>
 
       <section id="github" className="section github-section">
