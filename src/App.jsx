@@ -53,8 +53,7 @@ function App() {
   };
 
   return (
-    <main className="app-shell">
-      <span id="about" className="legacy-anchor" aria-hidden="true" />
+    <main id="about" className="app-shell">
       <header className="site-header">
         <a className="brand" href="#hero">
           有山達也
