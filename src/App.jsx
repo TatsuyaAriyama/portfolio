@@ -19,40 +19,42 @@ const reflections = [
     text: "また、機能追加を重ねる中で、UI/UXの改善、権限管理、データ設計、運用面まで意識して考える重要性を学びました。",
   },
 ];
+const assetPath = (path) => `${import.meta.env.BASE_URL}${path}`;
 const screenshots = [
   {
-    src: "/shelf-app/login.png",
+    src: assetPath("shelf-app/login.png"),
     title: "Login",
     text: "メール認証とGoogleログインに対応",
   },
   {
-    src: "/shelf-app/add-book.png",
+    src: assetPath("shelf-app/add-book.png"),
     title: "Book Search",
     text: "Google Books APIで書籍情報を自動検索",
   },
   {
-    src: "/shelf-app/top.png",
+    src: assetPath("shelf-app/top.png"),
     title: "TOP",
     text: "貸出状況と月間目標を確認",
   },
   {
-    src: "/shelf-app/library.png",
+    src: assetPath("shelf-app/library.png"),
     title: "Library",
     text: "検索・フィルター付き書籍一覧",
   },
   {
-    src: "/shelf-app/profile.png",
+    src: assetPath("shelf-app/profile.png"),
     title: "Profile",
     text: "読書状況と投稿を可視化",
   },
   {
-    src: "/shelf-app/chat.png",
+    src: assetPath("shelf-app/chat.png"),
     title: "Chat",
     text: "改善案や連絡を共有",
   },
 ];
 const storageKey = "portfolioProfileImage";
-const publishedProfileImage = "/profile-photo.jpg";
+const publishedProfileImage = assetPath("profile-photo.jpg");
+const githubOverviewImage = assetPath("github-overview.png");
 
 function App() {
   const [profileImage, setProfileImage] = useState(publishedProfileImage);
@@ -98,6 +100,7 @@ function App() {
         <nav className="nav-links" aria-label="Main navigation">
           <a href="#about">About</a>
           <a href="#skills">Skills</a>
+          <a href="#github">GitHub</a>
           <a href="#projects">Projects</a>
           <a href="#contact">Contact</a>
         </nav>
@@ -199,6 +202,22 @@ function App() {
             </ul>
           </div>
         </div>
+      </section>
+
+      <section id="github" className="section github-section">
+        <div className="github-copy">
+          <p className="eyebrow">GitHub Activity</p>
+          <h2>学んだことを、動く形で積み上げています。</h2>
+          <p>
+            Reactで制作したポートフォリオ、Javaのループ練習、KotlinのAndroidアプリなど、
+            小さく作って試しながら理解を深めています。GitHubでは制作物だけでなく、
+            日々の改善や学習の足跡も残し、継続してコードを書く習慣を大切にしています。
+          </p>
+        </div>
+        <figure className="github-visual">
+          <img src={githubOverviewImage} alt="GitHubプロフィールとリポジトリ一覧" />
+          <figcaption>GitHubで公開しているリポジトリとコントリビューション</figcaption>
+        </figure>
       </section>
 
       <section id="projects" className="section">
