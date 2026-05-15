@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { ArrowUpRight, Camera, Code2, Mail, X } from "lucide-react";
+import { useState } from "react";
+import { ArrowUpRight, Code2, Mail, X } from "lucide-react";
 
 const skills = ["React", "JavaScript", "CSS", "Firebase", "GitHub", "Python"];
 const mainFeatures = [
@@ -20,6 +20,7 @@ const reflections = [
   },
 ];
 const assetPath = (path) => `${import.meta.env.BASE_URL}${path}`;
+const profilePhotoImage = assetPath("profile-photo.jpg");
 const screenshots = [
   {
     src: assetPath("shelf-app/login.png"),
@@ -52,40 +53,10 @@ const screenshots = [
     text: "改善案や連絡を共有",
   },
 ];
-const storageKey = "portfolioProfileImage";
-const publishedProfileImage = assetPath("profile-photo.jpg");
 const githubOverviewImage = assetPath("github-overview.png");
 
 function App() {
-  const [profileImage, setProfileImage] = useState(publishedProfileImage);
   const [activeScreenshot, setActiveScreenshot] = useState(null);
-
-  useEffect(() => {
-    setProfileImage(localStorage.getItem(storageKey) || publishedProfileImage);
-  }, []);
-
-  const handleImageChange = (event) => {
-    const file = event.target.files?.[0];
-
-    if (!file) return;
-
-    const reader = new FileReader();
-    reader.onload = () => {
-      const imageUrl = String(reader.result);
-      setProfileImage(imageUrl);
-      localStorage.setItem(storageKey, imageUrl);
-    };
-    reader.readAsDataURL(file);
-  };
-
-  const removeImage = () => {
-    setProfileImage(publishedProfileImage);
-    localStorage.removeItem(storageKey);
-  };
-
-  const handleProfileImageError = () => {
-    setProfileImage("");
-  };
 
   const closeScreenshot = () => {
     setActiveScreenshot(null);
@@ -110,7 +81,10 @@ function App() {
         <div className="hero-copy">
           <p className="eyebrow">Frontend Engineer</p>
           <h1>有山達也</h1>
-          <p className="lead">社内書籍管理アプリ SHELF-APP を制作。</p>
+          <p className="lead">
+            ReactとFirebaseを軸に、実際に使われる社内アプリを設計・実装しています。
+            小さく作り、動かし、改善しながら、使いやすい体験へ磨き込むことを大切にしています。
+          </p>
           <div className="hero-actions">
             <a className="button primary" href="#projects">
               Project
@@ -125,15 +99,7 @@ function App() {
 
         <aside className="profile-card" aria-label="Profile">
           <div className="photo-frame">
-            {profileImage ? (
-              <img
-                src={profileImage}
-                alt="有山達也のプロフィール写真"
-                onError={handleProfileImageError}
-              />
-            ) : (
-              <span>Photo</span>
-            )}
+            <img src={profilePhotoImage} alt="有山達也のプロフィール写真" />
           </div>
 
           <div className="profile-info">
@@ -142,20 +108,7 @@ function App() {
             <a href="mailto:ariyama.tatsuya@chion-tech.jp">
               ariyama.tatsuya@chion-tech.jp
             </a>
-          </div>
-
-          <div className="editor-actions">
-            <label className="upload-button">
-              <Camera size={18} />
-              写真を追加
-              <input type="file" accept="image/*" onChange={handleImageChange} />
-            </label>
-            {profileImage && (
-              <button className="remove-button" type="button" onClick={removeImage}>
-                <X size={18} />
-                削除
-              </button>
-            )}
+            <p>Rookie developer building practical internal tools.</p>
           </div>
         </aside>
       </section>
