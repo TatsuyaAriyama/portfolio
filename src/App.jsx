@@ -9,7 +9,7 @@ const reflections = [
     text: "また、機能追加を重ねる中で、UI/UXの改善、権限管理、データ設計、運用面まで意識して考える重要性を学びました。",
   },
 ];
-const assetPath = (path) => `${import.meta.env.BASE_URL}${path}`;
+const assetPath = (path) => path;
 const profilePhotoImage = assetPath("profile-photo.jpg");
 const screenshots = [
   {
