@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ArrowUpRight, Code2, Mail, X } from "lucide-react";
+import profilePhotoImage from "./assets/profile-photo.jpg";
 
 const reflections = [
   {
@@ -10,7 +11,6 @@ const reflections = [
   },
 ];
 const assetPath = (path) => path;
-const profilePhotoImage = assetPath("profile-photo.jpg");
 const screenshots = [
   {
     src: assetPath("shelf-app/login.png"),
