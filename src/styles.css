@@ -42,6 +42,11 @@ a {
   margin: 0 auto;
 }
 
+.legacy-anchor {
+  position: absolute;
+  top: 0;
+}
+
 .site-header {
   position: sticky;
   top: 12px;
