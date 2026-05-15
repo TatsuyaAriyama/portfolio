@@ -269,6 +269,14 @@ h2 {
   line-height: 1.95;
 }
 
+.github-link-button {
+  width: fit-content;
+  margin-top: 28px;
+  border-color: var(--ink);
+  color: #fff;
+  background: var(--ink);
+}
+
 .github-visual {
   overflow: hidden;
   margin: 0;

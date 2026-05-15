@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowUpRight, Code2, Mail, X } from "lucide-react";
+import { ArrowDown, ArrowUpRight, Code2, Mail, X } from "lucide-react";
 import profilePhotoImage from "./assets/profile-photo.jpg";
 
 const reflections = [
@@ -75,9 +75,9 @@ function App() {
             小さく作り、動かし、改善しながら、使いやすい体験へ磨き込むことを大切にしています。
           </p>
           <div className="hero-actions">
-            <a className="button primary" href="#projects">
-              Project
-              <ArrowUpRight size={18} />
+            <a className="button primary" href="#github">
+              GitHub Activity
+              <ArrowDown size={18} />
             </a>
             <a className="button ghost" href="mailto:ariyama.tatsuya@chion-tech.jp">
               Mail
@@ -111,6 +111,15 @@ function App() {
             小さく作って試しながら理解を深めています。GitHubでは制作物だけでなく、
             日々の改善や学習の足跡も残し、継続してコードを書く習慣を大切にしています。
           </p>
+          <a
+            className="small-button github-link-button"
+            href="https://github.com/TatsuyaAriyama"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHubを開く
+            <ArrowUpRight size={16} />
+          </a>
         </div>
         <figure className="github-visual">
           <img src={githubOverviewImage} alt="GitHubプロフィールとリポジトリ一覧" />
