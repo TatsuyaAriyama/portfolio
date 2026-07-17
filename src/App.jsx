@@ -1,243 +1,416 @@
-import { useState } from "react";
-import { ArrowDown, ArrowUpRight, Code2, Mail, X } from "lucide-react";
-import profilePhotoImage from "./assets/profile-photo.jpg";
+import { useEffect, useRef, useState } from "react";
+import profilePhoto from "./assets/profile-photo.jpg";
 
-const reflections = [
+const asset = (path) => import.meta.env.BASE_URL + path.replace(/^\//, "");
+
+const APPS = [
   {
-    text: "この開発を通して、画面作成だけでなく、要件整理から実装、改善、公開反映までの一連の流れを実践的に学びました。",
+    id: "landfall",
+    name: "Landfall",
+    tagline: "休みながら続ける、学びの記録",
+    meta: "2026.07 / SwiftUI · iOS",
+    icon: asset("/icons/landfall.png"),
+    repo: "https://github.com/TatsuyaAriyama/Landfall",
+    live: null,
+    shots: [
+      asset("/landfall/01.png"),
+      asset("/landfall/02.png"),
+      asset("/landfall/03.png"),
+      asset("/landfall/04.png"),
+      asset("/landfall/05.png"),
+    ],
+    pills: [
+      "三日坊主の常習犯",
+      "ストリークに疲れた",
+      "休むと戻れなくなる",
+      "がんばりを静かに残したい",
+    ],
   },
   {
-    text: "また、機能追加を重ねる中で、UI/UXの改善、権限管理、データ設計、運用面まで意識して考える重要性を学びました。",
+    id: "suzaku",
+    name: "朱雀",
+    tagline: "方角だけを示す、ミニマルなコンパス",
+    meta: "2026.07 / React · Capacitor",
+    icon: asset("/icons/suzaku.png"),
+    repo: "https://github.com/TatsuyaAriyama/suzaku",
+    live: "https://tatsuyaariyama.github.io/suzaku/",
+    shots: [
+      asset("/suzaku/01-welcome.png"),
+      asset("/suzaku/02-home.png"),
+      asset("/suzaku/03-search.png"),
+      asset("/suzaku/04-nearby.png"),
+      asset("/suzaku/05-compass.png"),
+      asset("/suzaku/06-arrived.png"),
+    ],
+    pills: [
+      "地図を読むのが苦手",
+      "歩きスマホをやめたい",
+      "散歩と寄り道が好き",
+      "「だいたいあっち」で十分",
+    ],
+  },
+  {
+    id: "madoromi",
+    name: "Madoromi",
+    tagline: "至高の睡眠を設計する",
+    meta: "2026.06 / React · Capacitor",
+    icon: asset("/icons/madoromi.png"),
+    repo: "https://github.com/TatsuyaAriyama/Modoromi",
+    live: null,
+    shots: [
+      asset("/madoromi/home.png"),
+      asset("/madoromi/charts.png"),
+      asset("/madoromi/history.png"),
+    ],
+    pills: [
+      "翌日の頭のキレを上げたい",
+      "夜ふかしがやめられない",
+      "睡眠負債が気になる",
+      "静かなアプリが好き",
+    ],
   },
 ];
-const assetPath = (path) => path;
-const screenshots = [
+
+const PHILOSOPHY = [
   {
-    src: assetPath("shelf-app/login.png"),
-    title: "Login",
-    text: "メール認証とGoogleログインに対応",
+    num: "01",
+    title: "subtract",
+    text: "足すより、引く。機能を削って、体験を残す。",
   },
   {
-    src: assetPath("shelf-app/add-book.png"),
-    title: "Book Search",
-    text: "Google Books APIで書籍情報を自動検索",
+    num: "02",
+    title: "quiet",
+    text: "急かさない。数字で追い立てない。静かに寄り添う。",
   },
   {
-    src: assetPath("shelf-app/top.png"),
-    title: "TOP",
-    text: "貸出状況と月間目標を確認",
+    num: "03",
+    title: "honest",
+    text: "できないことは、できないと書く。正直に作って、正直に見せる。",
   },
   {
-    src: assetPath("shelf-app/library.png"),
-    title: "Library",
-    text: "検索・フィルター付き書籍一覧",
-  },
-  {
-    src: assetPath("shelf-app/profile.png"),
-    title: "Profile",
-    text: "読書状況と投稿を可視化",
-  },
-  {
-    src: assetPath("shelf-app/chat.png"),
-    title: "Chat",
-    text: "改善案や連絡を共有",
+    num: "04",
+    title: "polish",
+    text: "針の遅れ、画面の光、休んだ日の扱い。細部の手触りまで磨き込む。",
   },
 ];
-const githubOverviewImage = assetPath("github-overview.png");
 
-function App() {
-  const [activeScreenshot, setActiveScreenshot] = useState(null);
+function useReveal() {
+  useEffect(() => {
+    const els = Array.from(document.querySelectorAll(".reveal"));
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced || !("IntersectionObserver" in window)) {
+      els.forEach((el) => el.classList.add("is-visible"));
+      return;
+    }
+    const counters = Array.from(document.querySelectorAll("[data-count-to]"));
+    counters.forEach((el) => {
+      el.textContent = "0" + (el.dataset.countSuffix ?? "");
+    });
+    const easeOut = (t) => 1 - Math.pow(1 - t, 3);
+    const runCount = (el) => {
+      const target = Number(el.dataset.countTo);
+      if (!Number.isFinite(target)) return;
+      const suffix = el.dataset.countSuffix ?? "";
+      const start = performance.now();
+      const tick = (now) => {
+        const p = Math.min((now - start) / 1200, 1);
+        el.textContent = Math.round(easeOut(p) * target).toLocaleString() + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          const counter = entry.target.matches("[data-count-to]")
+            ? entry.target
+            : entry.target.querySelector("[data-count-to]");
+          if (counter) runCount(counter);
+          io.unobserve(entry.target);
+        });
+      },
+      { threshold: 0, rootMargin: "0px 0px -12% 0px" }
+    );
+    const raf = requestAnimationFrame(() => {
+      requestAnimationFrame(() => els.forEach((el) => io.observe(el)));
+    });
+    return () => {
+      cancelAnimationFrame(raf);
+      io.disconnect();
+    };
+  }, []);
+}
 
-  const closeScreenshot = () => {
-    setActiveScreenshot(null);
-  };
+function SiteNav() {
+  const navRef = useRef(null);
+  const sentinelRef = useRef(null);
+
+  useEffect(() => {
+    const nav = navRef.current;
+    const sentinel = sentinelRef.current;
+    if (!nav || !sentinel) return;
+    if ("IntersectionObserver" in window) {
+      const io = new IntersectionObserver(([entry]) => {
+        nav.classList.toggle("is-shown", !entry.isIntersecting);
+      });
+      io.observe(sentinel);
+      return () => io.disconnect();
+    }
+    const onScroll = () => nav.classList.toggle("is-shown", window.scrollY > 220);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <main id="about" className="app-shell">
-      <header className="site-header">
-        <a className="brand" href="#hero">
-          有山達也
+    <>
+      <div ref={sentinelRef} className="site-nav-sentinel" aria-hidden="true" />
+      <header ref={navRef} className="site-nav">
+        <a href="#top" className="site-nav__wm">
+          Tatsuya Ariyama
         </a>
-        <nav className="nav-links" aria-label="Main navigation">
-          <a href="#github">GitHub</a>
-          <a href="#projects">Projects</a>
-          <a href="#contact">Contact</a>
+        <nav className="site-nav__links">
+          <a href="#apps">apps</a>
+          <a href="#philosophy">philosophy</a>
+          <a href="#about">about</a>
         </nav>
       </header>
+    </>
+  );
+}
 
-      <section id="hero" className="hero section">
-        <div className="hero-copy">
-          <p className="eyebrow">Frontend Engineer</p>
-          <h1>有山達也</h1>
-          <p className="lead">
-            ReactとFirebaseを軸に、実際に使われる社内アプリを設計・実装しています。
-            小さく作り、動かし、改善しながら、使いやすい体験へ磨き込むことを大切にしています。
-          </p>
-          <div className="hero-actions">
-            <a className="button primary" href="#github">
-              GitHub Activity
-              <ArrowDown size={18} />
-            </a>
-            <a className="button ghost" href="mailto:ariyama.tatsuya@chion-tech.jp">
-              Mail
-              <Mail size={18} />
-            </a>
-          </div>
-        </div>
+function AppShots({ app }) {
+  const wrapRef = useRef(null);
+  const shotsRef = useRef(null);
 
-        <aside className="profile-card" aria-label="Profile">
-          <div className="photo-frame">
-            <img src={profilePhotoImage} alt="有山達也のプロフィール写真" />
-          </div>
+  useEffect(() => {
+    const wrap = wrapRef.current;
+    const shots = shotsRef.current;
+    if (!wrap || !shots) return;
+    const update = () => {
+      const max = shots.scrollWidth - shots.clientWidth;
+      wrap.classList.toggle("is-end", shots.scrollLeft >= max - 4);
+    };
+    shots.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    update();
+    return () => {
+      shots.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, []);
 
-          <div className="profile-info">
-            <p className="profile-label">Profile</p>
-            <h2>有山達也</h2>
-            <a href="mailto:ariyama.tatsuya@chion-tech.jp">
-              ariyama.tatsuya@chion-tech.jp
-            </a>
-            <p>Rookie developer building practical internal tools.</p>
-          </div>
-        </aside>
-      </section>
-
-      <section id="github" className="section github-section">
-        <div className="github-copy">
-          <p className="eyebrow">GitHub Activity</p>
-          <h2>学んだことを、動く形で積み上げています。</h2>
-          <p>
-            Reactで制作したポートフォリオ、Javaのループ練習、KotlinのAndroidアプリなど、
-            小さく作って試しながら理解を深めています。GitHubでは制作物だけでなく、
-            日々の改善や学習の足跡も残し、継続してコードを書く習慣を大切にしています。
-          </p>
-          <a
-            className="small-button github-link-button"
-            href="https://github.com/TatsuyaAriyama"
-            target="_blank"
-            rel="noreferrer"
-          >
-            GitHubを開く
-            <ArrowUpRight size={16} />
-          </a>
-        </div>
-        <figure className="github-visual">
-          <img src={githubOverviewImage} alt="GitHubプロフィールとリポジトリ一覧" />
-          <figcaption>GitHubで公開しているリポジトリとコントリビューション</figcaption>
-        </figure>
-      </section>
-
-      <section id="projects" className="section">
-        <p className="eyebrow">Project</p>
-        <article className="project-card">
-          <div className="project-top">
-            <div>
-              <span className="project-type">Internal Book Management</span>
-              <h2>SHELF-APP</h2>
-            </div>
-            <a
-              className="small-button"
-              href="https://shelf-app-213ca.web.app"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Open App
-              <ArrowUpRight size={16} />
-            </a>
-          </div>
-
-          <p className="project-description">
-            社内の本を探す、借りる、記録する流れをまとめた書籍管理アプリです。
-            ログイン、本登録、貸出状況、読書記録、投稿、チャットまで一つの画面体験として設計しました。
-          </p>
-
-          <div className="project-flow">
-            <span>画面構成</span>
-            <p>ログインから本登録、利用状況の確認までを順に紹介します。</p>
-          </div>
-
-          <div className="screenshot-grid">
-            {screenshots.map((screenshot) => (
-              <figure className="screenshot-card" key={screenshot.title}>
-                <button
-                  className="screenshot-button"
-                  type="button"
-                  onClick={() => setActiveScreenshot(screenshot)}
-                >
-                  <img src={screenshot.src} alt={`SHELF-APP ${screenshot.title}画面`} />
-                </button>
-                <figcaption>
-                  <strong>{screenshot.title}</strong>
-                  <span>{screenshot.text}</span>
-                </figcaption>
-              </figure>
-            ))}
-          </div>
-
-          <div className="project-reflection">
-            <div className="reflection-heading">
-              <span>振り返り</span>
-              <p>SHELF-APPを作成して学んだこと</p>
-            </div>
-            <div className="reflection-list">
-              {reflections.map((reflection) => (
-                <section className="reflection-item" key={reflection.text}>
-                  <p>{reflection.text}</p>
-                </section>
-              ))}
-            </div>
-          </div>
-        </article>
-      </section>
-
-      <section id="contact" className="section contact-section">
-        <p className="eyebrow">Contact</p>
-        <h2>ariyama.tatsuya@chion-tech.jp</h2>
-        <div className="hero-actions">
-          <a className="button primary" href="mailto:ariyama.tatsuya@chion-tech.jp">
-            Mail
-            <Mail size={18} />
-          </a>
-          <a
-            className="button ghost"
-            href="https://github.com/TatsuyaAriyama"
-            target="_blank"
-            rel="noreferrer"
-          >
-            GitHub
-            <Code2 size={18} />
-          </a>
-        </div>
-      </section>
-
-      {activeScreenshot && (
-        <div className="image-modal" role="dialog" aria-modal="true">
-          <button
-            className="modal-backdrop"
-            type="button"
-            aria-label="画像を閉じる"
-            onClick={closeScreenshot}
+  return (
+    <div ref={wrapRef} className="app-shots-wrap">
+      <div ref={shotsRef} className="app-shots" tabIndex={0}>
+        {app.shots.map((src, i) => (
+          <img
+            key={src}
+            src={src}
+            alt={`${app.name} screenshot ${i + 1}`}
+            loading="lazy"
+            decoding="async"
           />
-          <div className="modal-content">
-            <button
-              className="modal-close"
-              type="button"
-              aria-label="画像を閉じる"
-              onClick={closeScreenshot}
-            >
-              <X size={20} />
-            </button>
-            <img
-              src={activeScreenshot.src}
-              alt={`SHELF-APP ${activeScreenshot.title}画面の拡大表示`}
-            />
-            <p>
-              <strong>{activeScreenshot.title}</strong>
-              <span>{activeScreenshot.text}</span>
-            </p>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function AppBlock({ app }) {
+  return (
+    <article className="app-block reveal">
+      <div className="app-header">
+        <a
+          href={app.live ?? app.repo}
+          className="app-icon"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img src={app.icon} width="256" height="256" alt={`${app.name} icon`} decoding="async" />
+        </a>
+        <div className="app-info">
+          <p className="app-meta">{app.meta}</p>
+          <h2 className="app-name">{app.name}</h2>
+          <div className="app-tagline-row">
+            <span className="app-tagline">{app.tagline}</span>
+            <span className="app-links">
+              {app.live && (
+                <a
+                  href={app.live}
+                  className="app-link-badge"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span>Web で試す</span>
+                  <span className="app-link-arrow">→</span>
+                </a>
+              )}
+              <a
+                href={app.repo}
+                className="app-link-badge"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span>GitHub</span>
+                <span className="app-link-arrow">→</span>
+              </a>
+            </span>
           </div>
         </div>
-      )}
-    </main>
+      </div>
+
+      <AppShots app={app} />
+
+      <div className="recommend">
+        <span className="recommend-label">こんな人におすすめ：</span>
+        <div className="pills">
+          {app.pills.map((pill) => (
+            <span className="pill" key={pill}>
+              {pill}
+            </span>
+          ))}
+        </div>
+      </div>
+    </article>
+  );
+}
+
+function App() {
+  const [year] = useState(() => new Date().getFullYear());
+  useReveal();
+
+  return (
+    <div id="top">
+      <SiteNav />
+      <div className="page">
+        <section className="hero">
+          <h1 className="hero-title reveal">Tatsuya Ariyama</h1>
+          <p className="hero-statement reveal">
+            静かで、押し付けないデザイン。日常にそっと寄り添うアプリを作っています。
+          </p>
+        </section>
+
+        <section className="impact">
+          <div className="impact-item reveal" style={{ "--reveal-delay": "0s" }}>
+            <div className="impact-number" data-count-to="3">
+              3
+            </div>
+            <div className="impact-label">apps</div>
+          </div>
+          <div className="impact-item reveal" style={{ "--reveal-delay": "0.08s" }}>
+            <div className="impact-number" data-count-to="3">
+              3
+            </div>
+            <div className="impact-label">platforms</div>
+          </div>
+          <div className="impact-item reveal" style={{ "--reveal-delay": "0.16s" }}>
+            <div className="impact-number">2026</div>
+            <div className="impact-label">since</div>
+          </div>
+        </section>
+
+        <section className="apps" id="apps">
+          {APPS.map((app) => (
+            <AppBlock key={app.id} app={app} />
+          ))}
+        </section>
+
+        <section className="philosophy" id="philosophy">
+          <h2 className="philosophy-heading reveal">philosophy</h2>
+          <ol className="philosophy-list">
+            {PHILOSOPHY.map((item) => (
+              <li className="philosophy-item reveal" key={item.num}>
+                <div className="philosophy-num">{item.num}</div>
+                <div className="philosophy-body">
+                  <h3 className="philosophy-title">{item.title}</h3>
+                  <p className="philosophy-text">{item.text}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        <section className="about" id="about">
+          <div className="about-inner">
+            <h2 className="about-title reveal">about</h2>
+            <div className="about-body reveal">
+              <div className="about-image">
+                <img
+                  src={profilePhoto}
+                  width="480"
+                  height="600"
+                  alt="有山達也のプロフィール写真"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div className="about-content">
+                <p className="about-text">
+                  有山達也（ありやま たつや）
+                  <br />
+                  ReactとFirebaseで社内アプリを、SwiftUIでiOSアプリを制作。
+                  <br />
+                  小さく作り、動かし、使いながら磨き込む。
+                  <br />
+                  2026年から個人開発をしています。
+                </p>
+                <a
+                  href="https://github.com/TatsuyaAriyama"
+                  className="about-more"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span>GitHub</span>
+                  <span className="about-arrow">→</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <footer className="site">
+          <div className="footer-icons">
+            <a
+              href="https://github.com/TatsuyaAriyama"
+              aria-label="GitHub"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-icon"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                width="20"
+                height="20"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.16-1.18 3.16-1.18.63 1.59.24 2.76.12 3.05.74.81 1.18 1.83 1.18 3.09 0 4.42-2.69 5.39-5.26 5.67.41.36.78 1.06.78 2.14 0 1.54-.01 2.79-.01 3.17 0 .31.2.67.8.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z" />
+              </svg>
+            </a>
+            <a href="mailto:ariyama.tatsuya@chion-tech.jp" aria-label="Email" className="footer-icon">
+              <svg
+                viewBox="0 0 24 24"
+                width="20"
+                height="20"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <rect x="2" y="4" width="20" height="16" rx="2" />
+                <polyline points="2 8 12 13 22 8" />
+              </svg>
+            </a>
+          </div>
+          <div className="footer-copy">© {year} Tatsuya Ariyama</div>
+        </footer>
+      </div>
+    </div>
   );
 }
 

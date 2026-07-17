@@ -3,3 +3,5 @@ dist
 .firebase
 firebase-debug.log
 .DS_Store
+
+.claude/
