@@ -33,6 +33,7 @@ const APPS = [
     meta: "2026.07 / React · Capacitor",
     icon: asset("/icons/suzaku.png"),
     repo: "https://github.com/TatsuyaAriyama/suzaku",
+    appStore: "https://apps.apple.com/jp/app/id6788317890",
     live: "https://tatsuyaariyama.github.io/suzaku/",
     shots: [
       asset("/suzaku/01-welcome.png"),
@@ -224,7 +225,7 @@ function AppBlock({ app }) {
     <article className="app-block reveal">
       <div className="app-header">
         <a
-          href={app.live ?? app.repo}
+          href={app.appStore ?? app.live ?? app.repo}
           className="app-icon"
           target="_blank"
           rel="noopener noreferrer"
@@ -237,6 +238,17 @@ function AppBlock({ app }) {
           <div className="app-tagline-row">
             <span className="app-tagline">{app.tagline}</span>
             <span className="app-links">
+              {app.appStore && (
+                <a
+                  href={app.appStore}
+                  className="app-store-badge"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${app.name} を App Store で見る`}
+                >
+                  <img src={asset("/app-store-badge.svg")} alt="Download on the App Store" />
+                </a>
+              )}
               {app.live && (
                 <a
                   href={app.live}

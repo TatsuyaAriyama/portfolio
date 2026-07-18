@@ -328,6 +328,25 @@ a {
   transform: translate(3px);
 }
 
+.app-store-badge {
+  display: inline-flex;
+  align-items: center;
+  height: 36px;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.app-store-badge:hover {
+  opacity: 0.8;
+}
+
+.app-store-badge img {
+  height: 36px;
+  width: auto;
+  display: block;
+  border-radius: 8px;
+}
+
 /* ---- screenshots row ---- */
 .app-shots-wrap {
   position: relative;
