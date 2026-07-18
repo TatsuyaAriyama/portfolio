@@ -549,6 +549,27 @@ a {
   gap: 12px;
 }
 
+.about-identity {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.about-name {
+  font-family: var(--font-jp);
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+}
+
+.about-birth {
+  font-family: var(--font-en);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: var(--ink-sub);
+}
+
 .about-text {
   font-family: var(--font-jp);
   font-weight: 400;
@@ -556,6 +577,21 @@ a {
   line-height: 1.9;
   letter-spacing: 0.04em;
   color: var(--ink);
+}
+
+.about-note {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.about-note p {
+  font-family: var(--font-jp);
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.8;
+  letter-spacing: 0.04em;
+  color: var(--ink-sub);
 }
 
 .about-more {

@@ -385,15 +385,21 @@ function App() {
                 />
               </div>
               <div className="about-content">
+                <div className="about-identity">
+                  <p className="about-name">有山達也（ありやま たつや）</p>
+                  <p className="about-birth">2001年6月26日</p>
+                </div>
                 <p className="about-text">
-                  有山達也（ありやま たつや）
-                  <br />
                   ReactとFirebaseで社内アプリを、SwiftUIでiOSアプリを制作。
-                  <br />
-                  小さく作り、動かし、使いながら磨き込む。
-                  <br />
-                  2026年から個人開発をしています。
                 </p>
+                <div className="about-note">
+                  <p>小さく作り、動かし、使いながら磨き込む。</p>
+                  <p>
+                    2023年、大学在学中にUdemyでクリッカーゲームを開発し、Google
+                    Playで公開（DL 10万+）。
+                  </p>
+                  <p>2026年、iOS・macOS向けのサービスを個人開発しています。</p>
+                </div>
                 <a
                   href="https://github.com/TatsuyaAriyama"
                   className="about-more"
