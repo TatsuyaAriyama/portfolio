@@ -57,6 +57,7 @@ const APPS = [
     meta: "2026.06 / React · Capacitor",
     icon: asset("/icons/madoromi.png"),
     repo: "https://github.com/TatsuyaAriyama/Modoromi",
+    appStore: "https://apps.apple.com/jp/app/id6782383530",
     live: null,
     shots: [
       asset("/madoromi/home.png"),
@@ -67,6 +68,28 @@ const APPS = [
       "翌日の頭のキレを上げたい",
       "夜ふかしがやめられない",
       "睡眠負債が気になる",
+      "静かなアプリが好き",
+    ],
+  },
+  {
+    id: "kasane",
+    name: "kasane",
+    tagline: "同じ景色を、そっと重ねる定点フォトログ",
+    meta: "2026.06 / iOS",
+    icon: asset("/icons/kasane.jpg"),
+    repo: null,
+    appStore: "https://apps.apple.com/jp/app/id6779988652",
+    live: null,
+    shots: [
+      asset("/kasane/01-hero.png"),
+      asset("/kasane/02-ghost.png"),
+      asset("/kasane/03-timelapse.png"),
+      asset("/kasane/04-home.png"),
+    ],
+    pills: [
+      "同じ構図で撮り続けたい",
+      "少しずつの変化を残したい",
+      "定点観測が好き",
       "静かなアプリが好き",
     ],
   },
@@ -260,15 +283,17 @@ function AppBlock({ app }) {
                   <span className="app-link-arrow">→</span>
                 </a>
               )}
-              <a
-                href={app.repo}
-                className="app-link-badge"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <span>GitHub</span>
-                <span className="app-link-arrow">→</span>
-              </a>
+              {app.repo && (
+                <a
+                  href={app.repo}
+                  className="app-link-badge"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span>GitHub</span>
+                  <span className="app-link-arrow">→</span>
+                </a>
+              )}
             </span>
           </div>
         </div>
@@ -307,8 +332,8 @@ function App() {
 
         <section className="impact">
           <div className="impact-item reveal" style={{ "--reveal-delay": "0s" }}>
-            <div className="impact-number" data-count-to="3">
-              3
+            <div className="impact-number" data-count-to="4">
+              4
             </div>
             <div className="impact-label">apps</div>
           </div>
