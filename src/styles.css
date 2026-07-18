@@ -127,7 +127,6 @@ a {
 }
 
 #apps,
-#philosophy,
 #about {
   scroll-margin-top: 80px;
 }
@@ -437,67 +436,6 @@ a {
   white-space: nowrap;
 }
 
-/* ---- philosophy ---- */
-.philosophy {
-  padding: 120px var(--page-x) 24px;
-}
-
-.philosophy-heading {
-  font-family: var(--font-en);
-  font-size: 28px;
-  font-weight: 400;
-  letter-spacing: 0.04em;
-  color: var(--ink);
-  margin-bottom: 56px;
-}
-
-.philosophy-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 48px;
-  margin: 0;
-  padding: 0;
-  max-width: 720px;
-}
-
-.philosophy-item {
-  display: grid;
-  grid-template-columns: 60px 1fr;
-  gap: 32px;
-  align-items: baseline;
-}
-
-.philosophy-num {
-  font-family: var(--font-en);
-  font-size: 20px;
-  letter-spacing: 0.08em;
-  color: var(--ink-sub);
-}
-
-.philosophy-body {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.philosophy-title {
-  font-family: var(--font-en);
-  font-size: 24px;
-  font-weight: 400;
-  letter-spacing: 0.02em;
-  color: var(--ink);
-}
-
-.philosophy-text {
-  font-family: var(--font-jp);
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 2;
-  letter-spacing: 0.04em;
-  color: var(--ink);
-}
-
 /* ---- about ---- */
 .about {
   padding: 96px var(--page-x) 64px;
@@ -570,15 +508,6 @@ a {
   color: var(--ink-sub);
 }
 
-.about-text {
-  font-family: var(--font-jp);
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 1.9;
-  letter-spacing: 0.04em;
-  color: var(--ink);
-}
-
 .about-note {
   display: flex;
   flex-direction: column;
@@ -632,12 +561,10 @@ a {
   transform: translate(3px);
 }
 
-.philosophy-heading::before,
 .about-title::before {
   content: "(　";
 }
 
-.philosophy-heading::after,
 .about-title::after {
   content: "　)";
 }
@@ -746,29 +673,6 @@ footer.site {
     height: 304px;
     border-radius: 18px;
   }
-  .philosophy {
-    padding-top: 80px;
-  }
-  .philosophy-heading {
-    font-size: 22px;
-    margin-bottom: 40px;
-  }
-  .philosophy-list {
-    gap: 36px;
-  }
-  .philosophy-item {
-    grid-template-columns: 44px 1fr;
-    gap: 20px;
-  }
-  .philosophy-num {
-    font-size: 18px;
-  }
-  .philosophy-title {
-    font-size: 20px;
-  }
-  .philosophy-text {
-    font-size: 14px;
-  }
   .about {
     padding-top: 72px;
   }
@@ -783,8 +687,8 @@ footer.site {
   .about-title {
     font-size: 22px;
   }
-  .about-text {
-    font-size: 14px;
+  .about-note p {
+    font-size: 12px;
   }
 }
 
@@ -858,24 +762,5 @@ footer.site {
   }
   .about-title {
     font-size: 19px;
-  }
-  .about-text {
-    font-size: 13px;
-  }
-  .philosophy-heading {
-    font-size: 19px;
-  }
-  .philosophy-item {
-    grid-template-columns: 36px 1fr;
-    gap: 16px;
-  }
-  .philosophy-num {
-    font-size: 16px;
-  }
-  .philosophy-title {
-    font-size: 18px;
-  }
-  .philosophy-text {
-    font-size: 13px;
   }
 }

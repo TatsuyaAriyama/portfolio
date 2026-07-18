@@ -95,29 +95,6 @@ const APPS = [
   },
 ];
 
-const PHILOSOPHY = [
-  {
-    num: "01",
-    title: "subtract",
-    text: "足すより、引く。機能を削って、体験を残す。",
-  },
-  {
-    num: "02",
-    title: "quiet",
-    text: "急かさない。数字で追い立てない。静かに寄り添う。",
-  },
-  {
-    num: "03",
-    title: "honest",
-    text: "できないことは、できないと書く。正直に作って、正直に見せる。",
-  },
-  {
-    num: "04",
-    title: "polish",
-    text: "針の遅れ、画面の光、休んだ日の扱い。細部の手触りまで磨き込む。",
-  },
-];
-
 function useReveal() {
   useEffect(() => {
     const els = Array.from(document.querySelectorAll(".reveal"));
@@ -197,7 +174,6 @@ function SiteNav() {
         </a>
         <nav className="site-nav__links">
           <a href="#apps">apps</a>
-          <a href="#philosophy">philosophy</a>
           <a href="#about">about</a>
         </nav>
       </header>
@@ -355,21 +331,6 @@ function App() {
           ))}
         </section>
 
-        <section className="philosophy" id="philosophy">
-          <h2 className="philosophy-heading reveal">philosophy</h2>
-          <ol className="philosophy-list">
-            {PHILOSOPHY.map((item) => (
-              <li className="philosophy-item reveal" key={item.num}>
-                <div className="philosophy-num">{item.num}</div>
-                <div className="philosophy-body">
-                  <h3 className="philosophy-title">{item.title}</h3>
-                  <p className="philosophy-text">{item.text}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </section>
-
         <section className="about" id="about">
           <div className="about-inner">
             <h2 className="about-title reveal">about</h2>
@@ -389,10 +350,8 @@ function App() {
                   <p className="about-name">有山達也（ありやま たつや）</p>
                   <p className="about-birth">2001年6月26日</p>
                 </div>
-                <p className="about-text">
-                  ReactとFirebaseで社内アプリを、SwiftUIでiOSアプリを制作。
-                </p>
                 <div className="about-note">
+                  <p>ReactとFirebaseで社内アプリを、SwiftUIでiOSアプリを制作。</p>
                   <p>小さく作り、動かし、使いながら磨き込む。</p>
                   <p>
                     2023年、大学在学中にUdemyでクリッカーゲームを開発し、Google
