@@ -61,9 +61,9 @@ const APPS = [
     shots: [
       asset("/madoromi/01-hero.png"),
       asset("/madoromi/02-today.png"),
-      asset("/madoromi/03-alarm.png"),
+      asset("/madoromi/03-orbit.png"),
       asset("/madoromi/04-history.png"),
-      asset("/madoromi/05-winddown.png"),
+      asset("/madoromi/05-goodnight.png"),
     ],
     pills: [
       "翌日の頭のキレを上げたい",
