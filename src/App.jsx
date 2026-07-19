@@ -59,10 +59,10 @@ const APPS = [
     appStore: "https://apps.apple.com/jp/app/id6782383530",
     live: null,
     shots: [
-      asset("/madoromi/01-home.png"),
-      asset("/madoromi/02-history.png"),
+      asset("/madoromi/01-hero.png"),
+      asset("/madoromi/02-today.png"),
       asset("/madoromi/03-alarm.png"),
-      asset("/madoromi/04-settings.png"),
+      asset("/madoromi/04-history.png"),
       asset("/madoromi/05-winddown.png"),
     ],
     pills: [
