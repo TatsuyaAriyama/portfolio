@@ -36,12 +36,11 @@ const APPS = [
     appStore: "https://apps.apple.com/jp/app/id6788317890",
     live: "https://tatsuyaariyama.github.io/suzaku/",
     shots: [
-      asset("/suzaku/01-welcome.png"),
-      asset("/suzaku/02-home.png"),
-      asset("/suzaku/03-search.png"),
-      asset("/suzaku/04-nearby.png"),
-      asset("/suzaku/05-compass.png"),
-      asset("/suzaku/06-arrived.png"),
+      asset("/suzaku/01-direction.png"),
+      asset("/suzaku/02-find.png"),
+      asset("/suzaku/03-aligned.png"),
+      asset("/suzaku/04-glance.png"),
+      asset("/suzaku/05-arrive.png"),
     ],
     pills: [
       "地図を読むのが苦手",
