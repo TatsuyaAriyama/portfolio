@@ -13,6 +13,7 @@ const APPS = [
     repo: "https://github.com/TatsuyaAriyama/Landfall",
     live: null,
     shots: [
+      asset("/landfall/00-share.png"),
       asset("/landfall/01.png"),
       asset("/landfall/02.png"),
       asset("/landfall/03.png"),
