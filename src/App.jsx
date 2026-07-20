@@ -181,7 +181,7 @@ function SiteNav() {
   );
 }
 
-function AppShots({ app }) {
+function AppShots({ app, onOpen }) {
   const wrapRef = useRef(null);
   const shotsRef = useRef(null);
 
@@ -206,20 +206,27 @@ function AppShots({ app }) {
     <div ref={wrapRef} className="app-shots-wrap">
       <div ref={shotsRef} className="app-shots" tabIndex={0}>
         {app.shots.map((src, i) => (
-          <img
+          <button
             key={src}
-            src={src}
-            alt={`${app.name} screenshot ${i + 1}`}
-            loading="lazy"
-            decoding="async"
-          />
+            type="button"
+            className="shot-btn"
+            onClick={() => onOpen(app, i)}
+            aria-label={`${app.name} のスクリーンショット ${i + 1} を拡大`}
+          >
+            <img
+              src={src}
+              alt={`${app.name} screenshot ${i + 1}`}
+              loading="lazy"
+              decoding="async"
+            />
+          </button>
         ))}
       </div>
     </div>
   );
 }
 
-function AppBlock({ app }) {
+function AppBlock({ app, onOpen }) {
   return (
     <article className="app-block reveal">
       <div className="app-header">
@@ -275,7 +282,7 @@ function AppBlock({ app }) {
         </div>
       </div>
 
-      <AppShots app={app} />
+      <AppShots app={app} onOpen={onOpen} />
 
       <div className="recommend">
         <span className="recommend-label">こんな人におすすめ：</span>
@@ -291,9 +298,100 @@ function AppBlock({ app }) {
   );
 }
 
+function Lightbox({ data, onClose, onNav }) {
+  useEffect(() => {
+    if (!data) return;
+    const onKey = (e) => {
+      if (e.key === "Escape") onClose();
+      else if (e.key === "ArrowRight") onNav(1);
+      else if (e.key === "ArrowLeft") onNav(-1);
+    };
+    window.addEventListener("keydown", onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [data, onClose, onNav]);
+
+  if (!data) return null;
+  const { app, index } = data;
+  const total = app.shots.length;
+  const many = total > 1;
+
+  return (
+    <div
+      className="lightbox"
+      role="dialog"
+      aria-modal="true"
+      aria-label={`${app.name} のスクリーンショット`}
+      onClick={onClose}
+    >
+      <button type="button" className="lightbox-close" aria-label="閉じる" onClick={onClose}>
+        ✕
+      </button>
+
+      {many && (
+        <button
+          type="button"
+          className="lightbox-nav lightbox-nav--prev"
+          aria-label="前へ"
+          onClick={(e) => {
+            e.stopPropagation();
+            onNav(-1);
+          }}
+        >
+          ‹
+        </button>
+      )}
+
+      <img
+        className="lightbox-img"
+        src={app.shots[index]}
+        alt={`${app.name} screenshot ${index + 1}`}
+        onClick={(e) => e.stopPropagation()}
+      />
+
+      {many && (
+        <button
+          type="button"
+          className="lightbox-nav lightbox-nav--next"
+          aria-label="次へ"
+          onClick={(e) => {
+            e.stopPropagation();
+            onNav(1);
+          }}
+        >
+          ›
+        </button>
+      )}
+
+      <div className="lightbox-meta" onClick={(e) => e.stopPropagation()}>
+        <span className="lightbox-name">{app.name}</span>
+        {many && (
+          <span className="lightbox-count">
+            {index + 1} / {total}
+          </span>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function App() {
   const [year] = useState(() => new Date().getFullYear());
+  const [lightbox, setLightbox] = useState(null);
   useReveal();
+
+  const openShot = (app, index) => setLightbox({ app, index });
+  const closeShot = () => setLightbox(null);
+  const navShot = (dir) =>
+    setLightbox((prev) => {
+      if (!prev) return prev;
+      const total = prev.app.shots.length;
+      return { ...prev, index: (prev.index + dir + total) % total };
+    });
 
   return (
     <div id="top">
@@ -327,7 +425,7 @@ function App() {
 
         <section className="apps" id="apps">
           {APPS.map((app) => (
-            <AppBlock key={app.id} app={app} />
+            <AppBlock key={app.id} app={app} onOpen={openShot} />
           ))}
         </section>
 
@@ -412,6 +510,7 @@ function App() {
           <div className="footer-copy">© {year} Tatsuya Ariyama</div>
         </footer>
       </div>
+      <Lightbox data={lightbox} onClose={closeShot} onNav={navShot} />
     </div>
   );
 }
