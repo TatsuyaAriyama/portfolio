@@ -26,6 +26,14 @@ const APPS = [
       asset("/landfall/04.png"),
       asset("/landfall/05.png"),
     ],
+    shotsEn: [
+      asset("/landfall/en/00-share.png"),
+      asset("/landfall/en/01-home.png"),
+      asset("/landfall/en/02-coding.png"),
+      asset("/landfall/en/03-trace.png"),
+      asset("/landfall/en/04-logbook.png"),
+      asset("/landfall/en/05-phoenix.png"),
+    ],
     pills: {
       ja: [
         "三日坊主の常習犯",
