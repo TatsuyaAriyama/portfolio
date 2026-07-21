@@ -517,6 +517,15 @@ function App() {
                   <span className="log-value">now</span>
                 </div>
                 <div className="log-row">
+                  <span className="log-tile tile-mint">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M12 2.6 a2.6 2.6 0 1 0 0.001 0 Z M12 5.2 L12 20 M12 20 C8 20 4.8 17.4 4 13.8 L2.4 15 M4 13.8 L6.4 14.6 M12 20 C16 20 19.2 17.4 20 13.8 L21.6 15 M20 13.8 L17.6 14.6 M8.4 8.6 L15.6 8.6" fill="none" stroke="#12352d" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </span>
+                  <span className="log-label">iOS・macOS向けのサービスを個人開発中</span>
+                  <span className="log-value">2026〜</span>
+                </div>
+                <div className="log-row">
                   <span className="log-tile tile-coral">
                     <svg viewBox="0 0 24 24" aria-hidden="true">
                       <path d="M12 5.5 C10 3.8 7 3.4 4 4.2 L4 18.6 C7 17.8 10 18.2 12 19.8 C14 18.2 17 17.8 20 18.6 L20 4.2 C17 3.4 14 3.8 12 5.5 Z M12 7.4 L12 17.5" />
@@ -527,15 +536,6 @@ function App() {
                     2023 — 大学在学中、Udemyで学んでクリッカーゲームをGoogle Playで公開
                   </span>
                   <span className="log-value">DL 10万+</span>
-                </div>
-                <div className="log-row">
-                  <span className="log-tile tile-mint">
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                      <path d="M12 2.6 a2.6 2.6 0 1 0 0.001 0 Z M12 5.2 L12 20 M12 20 C8 20 4.8 17.4 4 13.8 L2.4 15 M4 13.8 L6.4 14.6 M12 20 C16 20 19.2 17.4 20 13.8 L21.6 15 M20 13.8 L17.6 14.6 M8.4 8.6 L15.6 8.6" fill="none" stroke="#12352d" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </span>
-                  <span className="log-label">iOS・macOS向けのサービスを個人開発中</span>
-                  <span className="log-value">2026〜</span>
                 </div>
                 <p className="log-quote">小さく作り、動かし、使いながら磨き込む。</p>
                 <p className="log-brand">Tatsuya Ariyama — 航海誌</p>
