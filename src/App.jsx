@@ -35,7 +35,7 @@ const APPS = [
     icon: asset("/icons/suzaku.png"),
     repo: "https://github.com/TatsuyaAriyama/suzaku",
     appStore: "https://apps.apple.com/jp/app/id6788317890",
-    live: "https://tatsuyaariyama.github.io/suzaku/",
+    live: "https://tokyocompass.app/",
     shots: [
       asset("/suzaku/01-direction.png"),
       asset("/suzaku/02-find.png"),
@@ -287,7 +287,7 @@ function AppBlock({ app, onOpen }) {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <span>Web で試す</span>
+                  <span>web</span>
                   <span className="app-link-arrow">→</span>
                 </a>
               )}
