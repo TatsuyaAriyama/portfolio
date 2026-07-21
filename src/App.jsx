@@ -512,7 +512,7 @@ function App() {
                     </svg>
                   </span>
                   <span className="log-label">
-                    ReactとFirebaseで社内アプリを、SwiftUIでiOSアプリを制作
+                    情報セキュリティを軸に、IT基礎を体系的に学習。安全で信頼されるものづくりを目指しています。
                   </span>
                   <span className="log-value">now</span>
                 </div>
