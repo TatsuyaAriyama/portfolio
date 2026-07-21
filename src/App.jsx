@@ -145,6 +145,30 @@ function useReveal() {
   }, []);
 }
 
+function Boat({ className }) {
+  return (
+    <svg className={className} viewBox="0 0 150 92" aria-hidden="true">
+      <path d="M92 4 C82 26 77 46 79 63 L50 63 C63 50 79 28 92 4 Z" />
+      <path d="M42 70 Q75 82 110 70 L101 80 Q74 88 51 80 Z" />
+      <rect x="6" y="54" width="28" height="5" rx="2.5" opacity="0.55" />
+      <rect x="0" y="67" width="20" height="5" rx="2.5" opacity="0.35" />
+    </svg>
+  );
+}
+
+function Hills({ className }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 1440 190"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+    >
+      <path d="M0 190 L0 138 C140 124 300 92 470 98 C610 103 680 142 810 134 C940 126 1010 74 1170 68 C1280 64 1370 88 1440 100 L1440 190 Z" />
+    </svg>
+  );
+}
+
 function SiteNav() {
   const navRef = useRef(null);
   const sentinelRef = useRef(null);
@@ -174,8 +198,8 @@ function SiteNav() {
           Tatsuya Ariyama
         </a>
         <nav className="site-nav__links">
-          <a href="#apps">apps</a>
-          <a href="#about">about</a>
+          <a href="#apps">アプリ</a>
+          <a href="#about">航海士</a>
         </nav>
       </header>
     </>
@@ -397,120 +421,159 @@ function App() {
   return (
     <div id="top">
       <SiteNav />
-      <div className="page">
-        <section className="hero">
-          <h1 className="hero-title reveal">Tatsuya Ariyama</h1>
-          <p className="hero-statement reveal">
+      <header className="voyage-hero">
+        <div className="inner">
+          <p className="hero-kicker reveal">TATSUYA ARIYAMA — PORTFOLIO</p>
+          <h1 className="hero-title reveal" style={{ "--reveal-delay": "0.08s" }}>
+            <span className="hero-line">小さく作って、</span>
+            <span className="hero-line">
+              また<mark className="hl">出航</mark>する。
+            </span>
+          </h1>
+          <p className="hero-note reveal" style={{ "--reveal-delay": "0.16s" }}>
             静かで、押し付けないデザイン。日常にそっと寄り添うアプリを作っています。
           </p>
-        </section>
+        </div>
+        <div className="hero-shore" aria-hidden="true">
+          <span className="drift drift-1" />
+          <span className="drift drift-2" />
+          <span className="drift drift-3" />
+          <Boat className="hero-boat" />
+          <Hills className="hero-hills" />
+        </div>
+      </header>
 
-        <section className="impact">
-          <div className="impact-item reveal" style={{ "--reveal-delay": "0s" }}>
-            <div className="impact-number" data-count-to="4">
-              4
+      <div className="page">
+        <section className="stats">
+          <div className="inner stats-row">
+            <div className="stat reveal" style={{ "--reveal-delay": "0s" }}>
+              <p className="stat-label">公開アプリ</p>
+              <p className="stat-num">
+                <span data-count-to="4">4</span>
+                <span className="stat-unit">本</span>
+              </p>
             </div>
-            <div className="impact-label">apps</div>
-          </div>
-          <div className="impact-item reveal" style={{ "--reveal-delay": "0.08s" }}>
-            <div className="impact-number" data-count-to="3">
-              3
+            <div className="stat reveal" style={{ "--reveal-delay": "0.08s" }}>
+              <p className="stat-label">プラットフォーム</p>
+              <p className="stat-num">
+                <span data-count-to="3">3</span>
+                <span className="stat-unit">つ</span>
+              </p>
             </div>
-            <div className="impact-label">platforms</div>
-          </div>
-          <div className="impact-item reveal" style={{ "--reveal-delay": "0.16s" }}>
-            <div className="impact-number">2026</div>
-            <div className="impact-label">since</div>
+            <div className="stat reveal" style={{ "--reveal-delay": "0.16s" }}>
+              <p className="stat-label">個人開発</p>
+              <p className="stat-num">
+                2026<span className="stat-unit">年〜</span>
+              </p>
+            </div>
           </div>
         </section>
 
         <section className="apps" id="apps">
+          <div className="section-head reveal">
+            <p className="section-label">これまでの航海</p>
+            <h2 className="section-title">4つの、小さな船。</h2>
+          </div>
           {APPS.map((app) => (
             <AppBlock key={app.id} app={app} onOpen={openShot} />
           ))}
         </section>
 
         <section className="about" id="about">
-          <div className="about-inner">
-            <h2 className="about-title reveal">about</h2>
-            <div className="about-body reveal">
-              <div className="about-image">
-                <img
-                  src={profilePhoto}
-                  width="480"
-                  height="600"
-                  alt="有山達也のプロフィール写真"
-                  loading="lazy"
-                  decoding="async"
-                />
+          <div className="section-head reveal">
+            <p className="section-label">航海士</p>
+            <h2 className="section-title">つくっている人。</h2>
+          </div>
+          <div className="reveal">
+            <div className="crew-card">
+              <div className="crew-top">
+                <div className="crew-photo">
+                  <img
+                    src={profilePhoto}
+                    width="480"
+                    height="600"
+                    alt="有山達也のプロフィール写真"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <div className="crew-idbox">
+                  <p className="crew-kana">ありやま たつや</p>
+                  <p className="crew-name">有山達也</p>
+                  <p className="crew-birth">2001年6月26日</p>
+                </div>
               </div>
-              <div className="about-content">
-                <div className="about-identity">
-                  <p className="about-name">有山達也（ありやま たつや）</p>
-                  <p className="about-birth">2001年6月26日</p>
+              <div className="crew-log">
+                <div className="log-row">
+                  <span className="log-tile tile-navy">
+                    <svg viewBox="0 0 150 92" aria-hidden="true">
+                      <path d="M92 4 C82 26 77 46 79 63 L50 63 C63 50 79 28 92 4 Z" />
+                      <path d="M42 70 Q75 82 110 70 L101 80 Q74 88 51 80 Z" />
+                    </svg>
+                  </span>
+                  <span className="log-label">
+                    ReactとFirebaseで社内アプリを、SwiftUIでiOSアプリを制作
+                  </span>
+                  <span className="log-value">now</span>
                 </div>
-                <div className="about-note">
-                  <p>ReactとFirebaseで社内アプリを、SwiftUIでiOSアプリを制作。</p>
-                  <p>小さく作り、動かし、使いながら磨き込む。</p>
-                  <p>
-                    2023年、大学在学中にUdemyでクリッカーゲームを開発し、Google
-                    Playで公開（DL 10万+）。
-                  </p>
-                  <p>2026年、iOS・macOS向けのサービスを個人開発しています。</p>
+                <div className="log-row">
+                  <span className="log-tile tile-coral">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M12 5.5 C10 3.8 7 3.4 4 4.2 L4 18.6 C7 17.8 10 18.2 12 19.8 C14 18.2 17 17.8 20 18.6 L20 4.2 C17 3.4 14 3.8 12 5.5 Z M12 7.4 L12 17.5" />
+                      <path d="M11.2 6.4 L12.8 6.4 L12.8 18.4 L11.2 18.4 Z" fill="#e9967e" />
+                    </svg>
+                  </span>
+                  <span className="log-label">
+                    2023 — 大学在学中、Udemyで学んでクリッカーゲームをGoogle Playで公開
+                  </span>
+                  <span className="log-value">DL 10万+</span>
                 </div>
-                <a
-                  href="https://github.com/TatsuyaAriyama"
-                  className="about-more"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <span>GitHub</span>
-                  <span className="about-arrow">→</span>
-                </a>
+                <div className="log-row">
+                  <span className="log-tile tile-mint">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M12 2.6 a2.6 2.6 0 1 0 0.001 0 Z M12 5.2 L12 20 M12 20 C8 20 4.8 17.4 4 13.8 L2.4 15 M4 13.8 L6.4 14.6 M12 20 C16 20 19.2 17.4 20 13.8 L21.6 15 M20 13.8 L17.6 14.6 M8.4 8.6 L15.6 8.6" fill="none" stroke="#12352d" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </span>
+                  <span className="log-label">iOS・macOS向けのサービスを個人開発中</span>
+                  <span className="log-value">2026〜</span>
+                </div>
+                <p className="log-quote">小さく作り、動かし、使いながら磨き込む。</p>
+                <p className="log-brand">Tatsuya Ariyama — 航海誌</p>
               </div>
             </div>
           </div>
-        </section>
-
-        <footer className="site">
-          <div className="footer-icons">
+          <div className="about-actions reveal">
             <a
               href="https://github.com/TatsuyaAriyama"
-              aria-label="GitHub"
+              className="voyage-btn"
               target="_blank"
               rel="noopener noreferrer"
-              className="footer-icon"
             >
-              <svg
-                viewBox="0 0 24 24"
-                width="20"
-                height="20"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.16-1.18 3.16-1.18.63 1.59.24 2.76.12 3.05.74.81 1.18 1.83 1.18 3.09 0 4.42-2.69 5.39-5.26 5.67.41.36.78 1.06.78 2.14 0 1.54-.01 2.79-.01 3.17 0 .31.2.67.8.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z" />
-              </svg>
-            </a>
-            <a href="mailto:ariyama.tatsuya@chion-tech.jp" aria-label="Email" className="footer-icon">
-              <svg
-                viewBox="0 0 24 24"
-                width="20"
-                height="20"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <rect x="2" y="4" width="20" height="16" rx="2" />
-                <polyline points="2 8 12 13 22 8" />
-              </svg>
+              GitHub を見る →
             </a>
           </div>
-          <div className="footer-copy">© {year} Tatsuya Ariyama</div>
-        </footer>
+        </section>
+
       </div>
+
+      <footer className="harbor">
+        <Hills className="harbor-hills" />
+        <div className="harbor-body">
+          <Boat className="harbor-boat" />
+          <nav className="harbor-bar" aria-label="Footer navigation">
+            <a href="#top">ホーム</a>
+            <a
+              href="https://github.com/TatsuyaAriyama"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub
+            </a>
+            <a href="mailto:ariyama.tatsuya@chion-tech.jp">Mail</a>
+          </nav>
+          <p className="harbor-copy">© {year} Tatsuya Ariyama — 港にて</p>
+        </div>
+      </footer>
       <Lightbox data={lightbox} onClose={closeShot} onNav={navShot} />
     </div>
   );

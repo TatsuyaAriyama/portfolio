@@ -1,14 +1,20 @@
 :root {
-  --bg: #f5f5f5;
-  --ink: #000000;
-  --ink-sub: #6b6b6b;
-  --ink-fade: #bfbfbf;
-  --tile-bg: #ffffff;
-  --line-hair: #e8e6e1;
-  --shot-border: #dcd9d2;
-  --font-en: "Forum", serif;
-  --font-jp: "Zen Kaku Gothic New", sans-serif;
-  --font-app: "Noto Sans JP", sans-serif;
+  --umi: #184a40; /* 海の深緑 */
+  --umi-deep: #123c34;
+  --suna: #eadebd; /* 砂の生成り */
+  --page-bg: #f1e9d2; /* ページの砂色(明) */
+  --card: #fffdf6;
+  --card-sand: #f6efda;
+  --ink: #1f3a31; /* 深緑の墨 */
+  --ink-sub: #71836f;
+  --ink-fade: #a9b3a0;
+  --line: #ddd3b4;
+  --kiiro: #e3c74d; /* 帆の黄 */
+  --daidai: #f5822a; /* 帰還の橙 */
+  --navy: #262046;
+  --coral: #e9967e;
+  --mint: #5dcaa5;
+  --font-jp: "Zen Maru Gothic", "Hiragino Maru Gothic ProN", sans-serif;
   --page-x: 72px;
 }
 
@@ -23,9 +29,10 @@ html {
 }
 
 body {
-  background: var(--bg);
+  background: var(--page-bg);
   color: var(--ink);
   font-family: var(--font-jp);
+  font-weight: 500;
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -40,10 +47,16 @@ a {
   color: inherit;
 }
 
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--page-x);
+}
+
 .page {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 0 88px;
+  padding: 0 0 96px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -71,9 +84,9 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: calc(16px + env(safe-area-inset-top, 0px))
-    max(var(--page-x), calc((100% - 1200px) / 2 + var(--page-x))) 16px;
-  background: #f5f5f5d1;
+  padding: calc(14px + env(safe-area-inset-top, 0px))
+    max(var(--page-x), calc((100% - 1200px) / 2 + var(--page-x))) 14px;
+  background: rgba(24, 74, 64, 0.92);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   opacity: 0;
@@ -101,29 +114,29 @@ a {
 }
 
 .site-nav__wm {
-  font-family: var(--font-en);
-  font-size: 16px;
-  letter-spacing: 0.01em;
-  color: var(--ink);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--suna);
   text-decoration: none;
 }
 
 .site-nav__links {
   display: flex;
-  gap: 36px;
+  gap: 28px;
 }
 
 .site-nav__links a {
-  font-family: var(--font-en);
-  font-size: 14px;
-  letter-spacing: 0.04em;
-  color: var(--ink-sub);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: rgba(234, 222, 189, 0.75);
   text-decoration: none;
   transition: color 0.25s ease;
 }
 
 .site-nav__links a:hover {
-  color: var(--ink);
+  color: var(--suna);
 }
 
 #apps,
@@ -131,82 +144,161 @@ a {
   scroll-margin-top: 80px;
 }
 
-/* ---- hero ---- */
-.hero {
-  padding: 112px var(--page-x) 48px;
+/* ---- hero: 海 ---- */
+.voyage-hero {
+  background: var(--umi);
+  padding-top: 132px;
+  overflow: hidden;
+}
+
+.hero-kicker {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.32em;
+  color: rgba(234, 222, 189, 0.55);
+  margin-bottom: 30px;
 }
 
 .hero-title {
-  font-family: var(--font-en);
-  font-size: 64px;
-  line-height: 1.1;
-  font-weight: 400;
+  font-size: clamp(40px, 6.2vw, 66px);
+  font-weight: 900;
+  line-height: 1.42;
   letter-spacing: 0.04em;
-  color: var(--ink);
+  color: var(--suna);
 }
 
-.hero-statement {
-  margin-top: 20px;
-  font-family: var(--font-jp);
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 1.8;
-  letter-spacing: 0.04em;
-  color: var(--ink);
+.hero-line {
+  display: block;
 }
 
-/* ---- impact stats ---- */
-.impact {
-  width: fit-content;
-  margin: 0 var(--page-x) 96px;
-  display: flex;
+.hl {
+  background: var(--kiiro);
+  color: var(--umi-deep);
+  border-radius: 0.18em;
+  padding: 0.02em 0.14em;
+  margin: 0 0.06em;
 }
 
-.impact-item {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 4px 44px;
+.hero-note {
+  margin-top: 26px;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 2;
+  letter-spacing: 0.06em;
+  color: rgba(234, 222, 189, 0.78);
 }
 
-.impact-item:first-child {
-  padding-left: 0;
+/* 海面: 流れる線と船、砂丘への渚 */
+.hero-shore {
+  position: relative;
+  margin-top: 48px;
 }
 
-.impact-item + .impact-item {
-  border-left: 1px solid var(--line-hair);
+.drift {
+  position: absolute;
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(234, 222, 189, 0.16);
 }
 
-.impact-number {
-  font-family: var(--font-en);
-  font-size: 48px;
-  line-height: 1;
-  letter-spacing: 0.01em;
-  color: var(--ink);
+.drift-1 {
+  width: 120px;
+  right: 14%;
+  top: -24px;
 }
 
-.impact-label {
-  font-family: var(--font-en);
+.drift-2 {
+  width: 72px;
+  right: 22%;
+  top: 4px;
+}
+
+.drift-3 {
+  width: 96px;
+  left: 6%;
+  top: -8px;
+}
+
+.hero-boat {
+  position: absolute;
+  left: 11%;
+  bottom: 52%;
+  width: clamp(64px, 8vw, 108px);
+  fill: var(--page-bg);
+}
+
+.hero-hills {
+  display: block;
+  width: 100%;
+  height: clamp(96px, 13vw, 180px);
+  fill: var(--page-bg);
+}
+
+/* ---- stats: 軌跡の統計 ---- */
+.stats {
+  padding: 40px 0 8px;
+}
+
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 860px;
+}
+
+.stat-label {
   font-size: 12px;
-  letter-spacing: 0.1em;
+  font-weight: 700;
+  letter-spacing: 0.12em;
   color: var(--ink-sub);
-  text-transform: lowercase;
 }
 
-.impact-label::before {
-  content: "(　";
+.stat-num {
+  margin-top: 6px;
+  font-size: 42px;
+  font-weight: 900;
+  line-height: 1.1;
+  color: var(--ink);
+  font-feature-settings: "tnum";
 }
 
-.impact-label::after {
-  content: "　)";
+.stat-unit {
+  font-size: 15px;
+  font-weight: 700;
+  margin-left: 4px;
+  color: var(--ink-sub);
+}
+
+/* ---- section head ---- */
+.section-head {
+  margin-bottom: 44px;
+}
+
+.section-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  color: var(--ink-sub);
+  margin-bottom: 10px;
+}
+
+.section-title {
+  font-size: clamp(24px, 3.4vw, 32px);
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  color: var(--ink);
 }
 
 /* ---- apps ---- */
 .apps {
-  padding: 0 var(--page-x);
+  padding: 88px var(--page-x) 0;
   display: flex;
   flex-direction: column;
   gap: 96px;
+}
+
+.apps .section-head {
+  margin-bottom: 0;
 }
 
 .app-block {
@@ -225,18 +317,19 @@ a {
 .app-icon {
   width: 110px;
   height: 110px;
-  background: var(--tile-bg);
-  border-radius: 24px;
+  background: var(--card);
+  border-radius: 26px;
   overflow: hidden;
   display: block;
   text-decoration: none;
   transition: transform 0.4s ease;
   position: relative;
   flex-shrink: 0;
+  box-shadow: 0 10px 26px rgba(24, 58, 49, 0.14);
 }
 
 .app-icon:hover {
-  transform: scale(1.03);
+  transform: scale(1.04) rotate(-1.5deg);
 }
 
 .app-icon img {
@@ -253,19 +346,18 @@ a {
 }
 
 .app-meta {
-  font-family: var(--font-en);
-  font-size: 14px;
-  letter-spacing: 0.04em;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
   line-height: 1.4;
   color: var(--ink-sub);
   white-space: nowrap;
 }
 
 .app-name {
-  font-family: var(--font-en);
-  font-size: 36px;
-  letter-spacing: 0.02em;
-  font-weight: 400;
+  font-size: 34px;
+  letter-spacing: 0.03em;
+  font-weight: 900;
   line-height: 1.2;
   color: var(--ink);
 }
@@ -278,10 +370,10 @@ a {
 }
 
 .app-tagline {
-  font-family: var(--font-jp);
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 1.4;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--ink);
 }
 
 .app-links {
@@ -295,24 +387,24 @@ a {
   align-items: center;
   gap: 8px;
   padding: 7px 18px;
-  border: 1px solid var(--ink-sub);
-  border-radius: 22px;
-  font-family: var(--font-en);
+  border: 1.5px solid var(--ink);
+  border-radius: 999px;
   font-size: 13px;
+  font-weight: 700;
   letter-spacing: 0.04em;
   color: var(--ink);
   text-decoration: none;
   white-space: nowrap;
   transition:
     background 0.3s ease,
-    border-color 0.3s ease,
-    color 0.3s ease;
+    color 0.3s ease,
+    transform 0.3s ease;
 }
 
 .app-link-badge:hover {
   background: var(--ink);
-  border-color: var(--ink);
-  color: var(--bg);
+  color: var(--page-bg);
+  transform: translateY(-2px);
 }
 
 .app-link-arrow {
@@ -323,7 +415,7 @@ a {
 }
 
 .app-link-badge:hover .app-link-arrow {
-  color: var(--bg);
+  color: var(--page-bg);
   transform: translate(3px);
 }
 
@@ -332,11 +424,14 @@ a {
   align-items: center;
   height: 36px;
   text-decoration: none;
-  transition: opacity 0.3s ease;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
 }
 
 .app-store-badge:hover {
-  opacity: 0.8;
+  opacity: 0.85;
+  transform: translateY(-2px);
 }
 
 .app-store-badge img {
@@ -359,7 +454,7 @@ a {
   bottom: 0;
   width: 72px;
   pointer-events: none;
-  background: linear-gradient(to right, rgba(245, 245, 245, 0), var(--bg));
+  background: linear-gradient(to right, rgba(241, 233, 210, 0), var(--page-bg));
   opacity: 1;
   transition: opacity 0.3s ease;
 }
@@ -402,7 +497,7 @@ a {
 }
 
 .shot-btn:hover {
-  transform: translateY(-4px);
+  transform: translateY(-4px) rotate(-0.6deg);
 }
 
 .shot-btn:focus-visible {
@@ -415,9 +510,270 @@ a {
   height: 364px;
   width: auto;
   border-radius: 22px;
-  border: 1px solid var(--shot-border);
+  border: 1px solid var(--line);
   background: #fff;
   object-fit: cover;
+}
+
+/* ---- recommend pills ---- */
+.recommend {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.recommend-label {
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--ink-sub);
+}
+
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  height: 26px;
+  padding: 0 13px;
+  background: var(--card);
+  border: 1.5px solid var(--ink);
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+/* ---- about: 航海士カード ---- */
+.about {
+  padding: 120px var(--page-x) 0;
+}
+
+.crew-card {
+  max-width: 720px;
+  border-radius: 28px;
+  overflow: hidden;
+  border: 6px solid var(--card);
+  box-shadow: 0 22px 48px rgba(24, 58, 49, 0.18);
+  transform: rotate(-1.2deg);
+}
+
+.crew-top {
+  background: var(--umi);
+  padding: 30px 34px;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.crew-photo {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid rgba(233, 150, 126, 0.9);
+  flex-shrink: 0;
+}
+
+.crew-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.crew-kana {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: rgba(234, 222, 189, 0.6);
+}
+
+.crew-name {
+  font-size: 27px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  color: var(--suna);
+  line-height: 1.4;
+}
+
+.crew-birth {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: rgba(234, 222, 189, 0.55);
+}
+
+.crew-log {
+  background: var(--card-sand);
+  padding: 10px 30px 20px;
+}
+
+.log-row {
+  display: grid;
+  grid-template-columns: 44px 1fr auto;
+  gap: 16px;
+  align-items: center;
+  padding: 16px 0;
+}
+
+.log-row + .log-row {
+  border-top: 1.5px solid rgba(31, 58, 49, 0.08);
+}
+
+.log-tile {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.log-tile svg {
+  width: 24px;
+  height: 24px;
+}
+
+.tile-navy {
+  background: var(--navy);
+}
+
+.tile-navy svg {
+  fill: var(--coral);
+}
+
+.tile-coral {
+  background: var(--coral);
+}
+
+.tile-coral svg {
+  fill: #4a1b0c;
+}
+
+.tile-mint {
+  background: var(--mint);
+}
+
+.log-label {
+  font-size: 13.5px;
+  font-weight: 700;
+  line-height: 1.7;
+  color: var(--ink);
+}
+
+.log-value {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink-sub);
+  white-space: nowrap;
+}
+
+.log-quote {
+  margin-top: 10px;
+  border-left: 4px solid var(--daidai);
+  padding-left: 14px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.8;
+}
+
+.log-brand {
+  margin-top: 18px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--ink-fade);
+}
+
+.about-actions {
+  max-width: 720px;
+  margin-top: 36px;
+  display: flex;
+  justify-content: center;
+}
+
+.voyage-btn {
+  display: inline-block;
+  background: #22201d;
+  color: var(--card-sand);
+  padding: 14px 42px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.voyage-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(24, 42, 35, 0.28);
+}
+
+/* ---- footer: 港 ---- */
+.harbor {
+  margin-top: 120px;
+}
+
+.harbor-hills {
+  display: block;
+  width: 100%;
+  height: clamp(80px, 10vw, 150px);
+  fill: var(--umi);
+}
+
+.harbor-body {
+  background: var(--umi);
+  padding: 8px 24px 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 26px;
+}
+
+.harbor-boat {
+  width: 64px;
+  fill: var(--suna);
+  opacity: 0.92;
+}
+
+.harbor-bar {
+  display: inline-flex;
+  gap: 4px;
+  background: var(--card-sand);
+  border-radius: 999px;
+  padding: 7px;
+  box-shadow: 0 14px 30px rgba(10, 30, 25, 0.28);
+}
+
+.harbor-bar a {
+  padding: 10px 26px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+  text-decoration: none;
+  transition: background 0.25s ease;
+}
+
+.harbor-bar a:hover {
+  background: rgba(24, 74, 64, 0.1);
+}
+
+.harbor-copy {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: rgba(234, 222, 189, 0.55);
 }
 
 /* ---- lightbox ---- */
@@ -429,7 +785,7 @@ a {
   align-items: center;
   justify-content: center;
   padding: 32px;
-  background: rgba(20, 18, 24, 0.82);
+  background: rgba(10, 30, 25, 0.86);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   animation: lb-fade 0.2s ease;
@@ -474,8 +830,8 @@ a {
   height: 44px;
   border: none;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.12);
-  color: #fff;
+  background: rgba(234, 222, 189, 0.16);
+  color: var(--suna);
   font-size: 18px;
   line-height: 1;
   cursor: pointer;
@@ -486,7 +842,7 @@ a {
 }
 
 .lightbox-close:hover {
-  background: rgba(255, 255, 255, 0.24);
+  background: rgba(234, 222, 189, 0.3);
 }
 
 .lightbox-nav {
@@ -497,8 +853,8 @@ a {
   height: 52px;
   border: none;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
-  color: #fff;
+  background: rgba(234, 222, 189, 0.14);
+  color: var(--suna);
   font-size: 30px;
   line-height: 1;
   cursor: pointer;
@@ -509,7 +865,7 @@ a {
 }
 
 .lightbox-nav:hover {
-  background: rgba(255, 255, 255, 0.22);
+  background: rgba(234, 222, 189, 0.28);
 }
 
 .lightbox-nav--prev {
@@ -528,247 +884,20 @@ a {
   display: flex;
   align-items: center;
   gap: 12px;
-  color: rgba(255, 255, 255, 0.82);
+  color: rgba(234, 222, 189, 0.85);
 }
 
 .lightbox-name {
-  font-family: var(--font-en);
   font-size: 14px;
-  letter-spacing: 0.04em;
+  font-weight: 700;
+  letter-spacing: 0.06em;
 }
 
 .lightbox-count {
-  font-family: var(--font-en);
   font-size: 12px;
-  letter-spacing: 0.08em;
-  color: rgba(255, 255, 255, 0.55);
-}
-
-@media (max-width: 480px) {
-  .lightbox-nav {
-    width: 40px;
-    height: 40px;
-    font-size: 24px;
-  }
-  .lightbox-nav--prev {
-    left: 8px;
-  }
-  .lightbox-nav--next {
-    right: 8px;
-  }
-}
-
-/* ---- recommend pills ---- */
-.recommend {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.recommend-label {
-  font-family: var(--font-app);
-  font-weight: 400;
-  font-size: 11px;
-  color: var(--ink-sub);
-}
-
-.pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.pill {
-  display: inline-flex;
-  align-items: center;
-  height: 24px;
-  padding: 0 12px;
-  background: var(--tile-bg);
-  border: 1px solid var(--ink);
-  border-radius: 12px;
-  font-family: var(--font-app);
-  font-weight: 400;
-  font-size: 11px;
-  color: var(--ink);
-  white-space: nowrap;
-}
-
-/* ---- about ---- */
-.about {
-  padding: 96px var(--page-x) 64px;
-}
-
-.about-inner {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  max-width: 760px;
-}
-
-.about-title {
-  font-family: var(--font-en);
-  font-size: 28px;
-  font-weight: 400;
-  letter-spacing: 0.04em;
-  color: var(--ink);
-}
-
-.about-body {
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: 40px;
-  align-items: start;
-}
-
-.about-image {
-  width: 200px;
-  aspect-ratio: 4 / 5;
-  height: auto;
-  background: var(--tile-bg);
-  border-radius: 28px;
-  overflow: hidden;
-  display: block;
-  flex-shrink: 0;
-}
-
-.about-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
-.about-content {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.about-identity {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-
-.about-name {
-  font-family: var(--font-jp);
-  font-weight: 500;
-  font-size: 16px;
-  letter-spacing: 0.02em;
-  color: var(--ink);
-}
-
-.about-birth {
-  font-family: var(--font-en);
-  font-size: 13px;
-  letter-spacing: 0.06em;
-  color: var(--ink-sub);
-}
-
-.about-note {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.about-note p {
-  font-family: var(--font-jp);
-  font-weight: 400;
-  font-size: 13px;
-  line-height: 1.8;
-  letter-spacing: 0.04em;
-  color: var(--ink-sub);
-}
-
-.about-more {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 9px 20px;
-  border: 1px solid var(--ink-sub);
-  border-radius: 22px;
-  font-family: var(--font-en);
-  font-size: 14px;
-  letter-spacing: 0.04em;
-  color: var(--ink);
-  text-decoration: none;
-  margin-top: 4px;
-  align-self: flex-start;
-  transition:
-    background 0.3s ease,
-    border-color 0.3s ease,
-    color 0.3s ease;
-}
-
-.about-more:hover {
-  background: var(--ink);
-  border-color: var(--ink);
-  color: var(--bg);
-}
-
-.about-arrow {
-  color: var(--ink-sub);
-  transition:
-    transform 0.3s ease,
-    color 0.3s ease;
-}
-
-.about-more:hover .about-arrow {
-  color: var(--bg);
-  transform: translate(3px);
-}
-
-.about-title::before {
-  content: "(　";
-}
-
-.about-title::after {
-  content: "　)";
-}
-
-/* ---- footer ---- */
-footer.site {
-  margin: 56px var(--page-x) 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-family: var(--font-en);
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  color: var(--ink-sub);
-}
-
-.footer-icons {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.footer-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  color: var(--ink-sub);
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.footer-icon:hover {
-  color: var(--ink);
-}
-
-.footer-icon svg {
-  display: block;
-}
-
-.footer-copy {
-  font-family: var(--font-en);
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  color: var(--ink-sub);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: rgba(234, 222, 189, 0.55);
 }
 
 /* ---- responsive ---- */
@@ -777,29 +906,37 @@ footer.site {
     --page-x: 36px;
   }
   .page {
-    padding-bottom: 44px;
+    padding-bottom: 64px;
   }
-  .hero {
-    padding-top: 72px;
-    padding-bottom: 40px;
+  .voyage-hero {
+    padding-top: 96px;
   }
-  .hero-title {
-    font-size: 44px;
+  .hero-kicker {
+    font-size: 10px;
+    margin-bottom: 22px;
   }
-  .hero-statement {
+  .hero-note {
     font-size: 13px;
   }
-  .impact {
-    margin-bottom: 72px;
+  .hero-shore {
+    margin-top: 36px;
   }
-  .impact-item {
-    padding: 4px 32px;
+  .stats-row {
+    gap: 12px;
   }
-  .impact-number {
-    font-size: 34px;
+  .stat-num {
+    font-size: 30px;
   }
-  .impact-label {
-    font-size: 11px;
+  .stat-label {
+    font-size: 10px;
+    letter-spacing: 0.08em;
+  }
+  .stat-unit {
+    font-size: 12px;
+  }
+  .apps {
+    padding-top: 64px;
+    gap: 72px;
   }
   .app-block {
     gap: 24px;
@@ -811,7 +948,7 @@ footer.site {
   .app-icon {
     width: 70px;
     height: 70px;
-    border-radius: 15px;
+    border-radius: 17px;
   }
   .app-name {
     font-size: 24px;
@@ -832,40 +969,60 @@ footer.site {
     border-radius: 18px;
   }
   .about {
-    padding-top: 72px;
+    padding-top: 88px;
   }
-  .about-body {
-    grid-template-columns: 140px 1fr;
-    gap: 24px;
+  .crew-top {
+    padding: 24px;
+    gap: 16px;
   }
-  .about-image {
-    width: 140px;
-    border-radius: 20px;
+  .crew-photo {
+    width: 64px;
+    height: 64px;
   }
-  .about-title {
+  .crew-name {
     font-size: 22px;
   }
-  .about-note p {
-    font-size: 12px;
+  .crew-log {
+    padding: 6px 20px 16px;
+  }
+  .harbor {
+    margin-top: 88px;
   }
 }
 
 @media (max-width: 480px) {
   .site-nav {
-    padding-top: calc(13px + env(safe-area-inset-top, 0px));
-    padding-bottom: 13px;
+    padding-top: calc(12px + env(safe-area-inset-top, 0px));
+    padding-bottom: 12px;
   }
   .site-nav__wm {
-    font-size: 14px;
+    font-size: 13px;
   }
   .site-nav__links {
-    gap: 20px;
+    gap: 18px;
   }
   .site-nav__links a {
     font-size: 12px;
   }
   .hero-title {
-    font-size: 36px;
+    font-size: clamp(30px, 8.6vw, 40px);
+  }
+  .stats-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .stat {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 12px 0;
+  }
+  .stat + .stat {
+    border-top: 1.5px solid rgba(31, 58, 49, 0.08);
+  }
+  .stat-num {
+    margin-top: 0;
+    font-size: 26px;
   }
   .app-header {
     grid-template-columns: 64px 1fr;
@@ -874,7 +1031,7 @@ footer.site {
   .app-icon {
     width: 64px;
     height: 64px;
-    border-radius: 14px;
+    border-radius: 15px;
   }
   .app-name {
     font-size: 21px;
@@ -886,18 +1043,7 @@ footer.site {
   .pill {
     font-size: 11px;
     padding: 0 11px;
-    height: 25px;
-    border-radius: 12px;
-  }
-  .impact-item {
-    padding: 2px 18px;
-  }
-  .impact-number {
-    font-size: 26px;
-  }
-  .impact-label {
-    font-size: 10px;
-    letter-spacing: 0.06em;
+    height: 26px;
   }
   .app-link-badge {
     padding: 5px 12px;
@@ -910,15 +1056,37 @@ footer.site {
     height: 228px;
     border-radius: 14px;
   }
-  .about-body {
-    grid-template-columns: 100px 1fr;
-    gap: 16px;
+  .log-row {
+    grid-template-columns: 38px 1fr;
+    gap: 12px;
   }
-  .about-image {
-    width: 100px;
-    border-radius: 16px;
+  .log-tile {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
   }
-  .about-title {
-    font-size: 19px;
+  .log-tile svg {
+    width: 20px;
+    height: 20px;
+  }
+  .log-value {
+    grid-column: 2;
+    justify-self: start;
+    margin-top: -8px;
+  }
+  .harbor-bar a {
+    padding: 9px 18px;
+    font-size: 12px;
+  }
+  .lightbox-nav {
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+  }
+  .lightbox-nav--prev {
+    left: 8px;
+  }
+  .lightbox-nav--next {
+    right: 8px;
   }
 }
