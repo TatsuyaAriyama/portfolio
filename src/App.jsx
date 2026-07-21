@@ -6,7 +6,7 @@ const asset = (path) => import.meta.env.BASE_URL + path.replace(/^\//, "");
 const APPS = [
   {
     id: "landfall",
-    name: "Landfall",
+    name: "Landfall - StudyLog",
     tagline: "休みながら続ける、学びの記録",
     meta: "2026.07 / SwiftUI · iOS",
     icon: asset("/icons/landfall.png"),
@@ -29,7 +29,7 @@ const APPS = [
   },
   {
     id: "suzaku",
-    name: "朱雀",
+    name: "朱雀 Suzaku - 東京コンパス",
     tagline: "方角だけを示す、ミニマルなコンパス",
     meta: "2026.07 / React · Capacitor",
     icon: asset("/icons/suzaku.png"),
