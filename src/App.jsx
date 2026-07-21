@@ -551,6 +551,14 @@ function App() {
             >
               GitHub を見る →
             </a>
+            <a
+              href="https://x.com/protoari"
+              className="voyage-btn voyage-btn--ghost"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              X (@protoari) →
+            </a>
           </div>
         </section>
 
@@ -568,6 +576,13 @@ function App() {
               rel="noopener noreferrer"
             >
               GitHub
+            </a>
+            <a
+              href="https://x.com/protoari"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              X
             </a>
             <a href="mailto:ariyama.tatsuya@chion-tech.jp">Mail</a>
           </nav>
