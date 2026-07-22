@@ -17,7 +17,7 @@ const APPS = [
     meta: "2026.07 / SwiftUI · iOS",
     icon: asset("/icons/landfall.png"),
     repo: "https://github.com/TatsuyaAriyama/Landfall",
-    live: null,
+    live: "https://landfall-studylog.com",
     shots: [
       asset("/landfall/00-share.png"),
       asset("/landfall/01.png"),
@@ -470,17 +470,6 @@ function AppBlock({ app, onOpen }) {
                   rel="noopener noreferrer"
                 >
                   <span>{t.web}</span>
-                  <span className="app-link-arrow">→</span>
-                </a>
-              )}
-              {app.repo && (
-                <a
-                  href={app.repo}
-                  className="app-link-badge"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <span>GitHub</span>
                   <span className="app-link-arrow">→</span>
                 </a>
               )}
