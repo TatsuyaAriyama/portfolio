@@ -182,8 +182,7 @@ const UI = {
     heroTitleB1: "また",
     heroTitleHl: "出航",
     heroTitleB2: "する。",
-    heroNote:
-      "静かで、押し付けないデザイン。日常にそっと寄り添うアプリを作っています。",
+    heroNote: "日常にそっと寄り添うアプリを作っています。",
     statApps: "公開アプリ",
     statAppsUnit: "本",
     statPlatforms: "プラットフォーム",
@@ -225,8 +224,7 @@ const UI = {
     heroTitleB1: "set ",
     heroTitleHl: "sail",
     heroTitleB2: " again.",
-    heroNote:
-      "Quiet design that never pushes. I make apps that gently sit beside everyday life.",
+    heroNote: "I make apps that gently sit beside everyday life.",
     statApps: "Apps shipped",
     statAppsUnit: "",
     statPlatforms: "Platforms",
