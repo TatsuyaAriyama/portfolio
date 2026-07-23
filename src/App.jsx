@@ -213,7 +213,6 @@ const UI = {
     quote: "小さく作り、動かし、使いながら磨き込む。",
     crewBrand: "Tatsuya Ariyama — 航海誌",
     btnGitHub: "GitHub を見る →",
-    btnX: "X (@protoari) →",
     footHome: "ホーム",
     footCopy: (y) => `© ${y} Tatsuya Ariyama — 港にて`,
     langToggle: "EN",
@@ -257,7 +256,6 @@ const UI = {
     quote: "Build small, ship it, and refine it while using it.",
     crewBrand: "Tatsuya Ariyama — Logbook",
     btnGitHub: "View GitHub →",
-    btnX: "X (@protoari) →",
     footHome: "Home",
     footCopy: (y) => `© ${y} Tatsuya Ariyama — at harbor`,
     langToggle: "日本語",
@@ -743,14 +741,6 @@ function App() {
               >
                 {t.btnGitHub}
               </a>
-              <a
-                href="https://x.com/protoari"
-                className="voyage-btn voyage-btn--ghost"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {t.btnX}
-              </a>
             </div>
           </section>
         </div>
@@ -767,13 +757,6 @@ function App() {
                 rel="noopener noreferrer"
               >
                 GitHub
-              </a>
-              <a
-                href="https://x.com/protoari"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                X
               </a>
               <a href="mailto:ariyama.tatsuya@chion-tech.jp">Mail</a>
             </nav>
