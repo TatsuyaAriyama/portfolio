@@ -14,7 +14,7 @@ const APPS = [
       ja: "休みながら続ける、学びの記録",
       en: "A study log you keep by resting, not by streaks",
     },
-    meta: "2026.07 / SwiftUI · iOS",
+    meta: "2026.07 / Web Service · iOS準備中",
     icon: asset("/icons/landfall.png"),
     repo: "https://github.com/TatsuyaAriyama/Landfall",
     live: "https://landfall-studylog.com",
