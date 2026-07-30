@@ -9,7 +9,7 @@ const asset = (path) => import.meta.env.BASE_URL + path.replace(/^\//, "");
 const APPS = [
   {
     id: "landfall",
-    name: "Aftide",
+    name: "KeelMira",
     tagline: {
       ja: "休みながら続ける、学びの記録",
       en: "A study log you keep by resting, not by streaks",
