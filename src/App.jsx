@@ -17,7 +17,7 @@ const APPS = [
     meta: "2026.07 / Web Service · iOS準備中",
     icon: asset("/icons/landfall.png"),
     repo: "https://github.com/TatsuyaAriyama/Landfall",
-    live: "https://landfall-studylog.com",
+    live: "https://keelmira.com",
     shots: [
       asset("/aftide/01-work.jpg"),
       asset("/aftide/02-complete.jpg"),
