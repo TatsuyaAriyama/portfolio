@@ -8,6 +8,42 @@ const asset = (path) => import.meta.env.BASE_URL + path.replace(/^\//, "");
 
 const APPS = [
   {
+    id: "moornote",
+    name: "MoorNote",
+    tagline: {
+      ja: "思考を、画面の端にそっと留める",
+      en: "Notes that stay by your side",
+    },
+    meta: "2026.08 / macOS · SwiftUI",
+    icon: asset("/icons/moornote.png"),
+    repo: null,
+    live: "https://moornote-mac.ari-initx.chatgpt.site",
+    shots: [
+      asset("/moornote/01-notes-by-your-side.jpg"),
+      asset("/moornote/02-dock-any-edge.jpg"),
+      asset("/moornote/03-local-and-private.jpg"),
+    ],
+    shotsEn: [
+      asset("/moornote/01-notes-by-your-side.jpg"),
+      asset("/moornote/02-dock-any-edge.jpg"),
+      asset("/moornote/03-local-and-private.jpg"),
+    ],
+    pills: {
+      ja: [
+        "作業中のメモをすぐ開きたい",
+        "デスクトップを散らかしたくない",
+        "メモをクラウドに残したくない",
+        "静かなツールが好き",
+      ],
+      en: [
+        "Want notes within instant reach",
+        "Want a calmer desktop",
+        "Prefer notes to stay off the cloud",
+        "Love quiet tools",
+      ],
+    },
+  },
+  {
     id: "landfall",
     name: "KeelMira",
     tagline: {
@@ -188,7 +224,7 @@ const UI = {
     statSince: "個人開発",
     statSinceUnit: "年〜",
     appsLabel: "これまでの航海",
-    appsTitle: "4つの、小さな船。",
+    appsTitle: "5つの、小さな船。",
     aboutLabel: "航海士",
     aboutTitle: "つくっている人。",
     recommend: "こんな人におすすめ：",
@@ -230,7 +266,7 @@ const UI = {
     statSince: "Solo dev",
     statSinceUnit: "—",
     appsLabel: "The voyages so far",
-    appsTitle: "Four small ships.",
+    appsTitle: "Five small ships.",
     aboutLabel: "Sailor",
     aboutTitle: "The one who builds them.",
     recommend: "Made for people who:",
@@ -637,7 +673,7 @@ function App() {
               <div className="stat reveal" style={{ "--reveal-delay": "0s" }}>
                 <p className="stat-label">{t.statApps}</p>
                 <p className="stat-num">
-                  <span data-count-to="4">4</span>
+                  <span data-count-to={APPS.length}>{APPS.length}</span>
                   {t.statAppsUnit && <span className="stat-unit">{t.statAppsUnit}</span>}
                 </p>
               </div>
