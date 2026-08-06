@@ -8,49 +8,13 @@ const asset = (path) => import.meta.env.BASE_URL + path.replace(/^\//, "");
 
 const APPS = [
   {
-    id: "moornote",
-    name: "MoorNote",
-    tagline: {
-      ja: "思考を、画面の端にそっと留める",
-      en: "Notes that stay by your side",
-    },
-    meta: "2026.08 / macOS · SwiftUI",
-    icon: asset("/icons/moornote.png"),
-    repo: null,
-    live: "https://moornote-mac.ari-initx.chatgpt.site",
-    shots: [
-      asset("/moornote/01-notes-by-your-side.jpg"),
-      asset("/moornote/02-dock-any-edge.jpg"),
-      asset("/moornote/03-local-and-private.jpg"),
-    ],
-    shotsEn: [
-      asset("/moornote/01-notes-by-your-side.jpg"),
-      asset("/moornote/02-dock-any-edge.jpg"),
-      asset("/moornote/03-local-and-private.jpg"),
-    ],
-    pills: {
-      ja: [
-        "作業中のメモをすぐ開きたい",
-        "デスクトップを散らかしたくない",
-        "メモをクラウドに残したくない",
-        "静かなツールが好き",
-      ],
-      en: [
-        "Want notes within instant reach",
-        "Want a calmer desktop",
-        "Prefer notes to stay off the cloud",
-        "Love quiet tools",
-      ],
-    },
-  },
-  {
     id: "landfall",
     name: "KeelMira",
     tagline: {
       ja: "休みながら続ける、学びの記録",
       en: "A study log you keep by resting, not by streaks",
     },
-    meta: "2026.07 / Web Service · iOS準備中",
+    meta: "2026.07 / iOS準備中",
     icon: asset("/icons/landfall.png"),
     repo: "https://github.com/TatsuyaAriyama/Landfall",
     live: "https://keelmira.com",
@@ -80,6 +44,42 @@ const APPS = [
         "Tired of streaks",
         "Can't come back after a break",
         "Want effort quietly recorded",
+      ],
+    },
+  },
+  {
+    id: "moornote",
+    name: "MoorNote",
+    tagline: {
+      ja: "思考を、画面の端にそっと留める",
+      en: "Notes that stay by your side",
+    },
+    meta: "2026.08 / macOS · SwiftUI",
+    icon: asset("/icons/moornote.png"),
+    repo: null,
+    live: null,
+    shots: [
+      asset("/moornote/01-notes-by-your-side.jpg"),
+      asset("/moornote/02-dock-any-edge.jpg"),
+      asset("/moornote/03-local-and-private.jpg"),
+    ],
+    shotsEn: [
+      asset("/moornote/01-notes-by-your-side.jpg"),
+      asset("/moornote/02-dock-any-edge.jpg"),
+      asset("/moornote/03-local-and-private.jpg"),
+    ],
+    pills: {
+      ja: [
+        "作業中のメモをすぐ開きたい",
+        "デスクトップを散らかしたくない",
+        "メモをクラウドに残したくない",
+        "静かなツールが好き",
+      ],
+      en: [
+        "Want notes within instant reach",
+        "Want a calmer desktop",
+        "Prefer notes to stay off the cloud",
+        "Love quiet tools",
       ],
     },
   },
