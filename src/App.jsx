@@ -14,9 +14,10 @@ const APPS = [
       ja: "休みながら続ける、学びの記録",
       en: "A study log you keep by resting, not by streaks",
     },
-    meta: "2026.07 / iOS準備中",
+    meta: "2026.07 / iOS",
     icon: asset("/icons/landfall.png"),
     repo: "https://github.com/TatsuyaAriyama/Landfall",
+    appStore: "https://apps.apple.com/jp/app/keelmira/id6791381131",
     live: "https://keelmira.com",
     shots: [
       asset("/aftide/01-work.jpg"),
@@ -34,16 +35,16 @@ const APPS = [
     ],
     pills: {
       ja: [
-        "三日坊主の常習犯",
+        "学習を習慣化したい",
         "ストリークに疲れた",
         "休むと戻れなくなる",
-        "がんばりを静かに残したい",
+        "継続した証を残したい",
       ],
       en: [
-        "Always quitting after a few days",
+        "Want to build a study habit",
         "Tired of streaks",
         "Can't come back after a break",
-        "Want effort quietly recorded",
+        "Want proof of what I've kept up",
       ],
     },
   },
