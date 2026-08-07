@@ -14,6 +14,10 @@ const APPS = [
       ja: "休みながら続ける、学びの記録",
       en: "A study log you keep by resting, not by streaks",
     },
+    description: {
+      ja: "「勉強が長続きしない……」と悩む必要はありません。このサービスは、「学習は途切れるもの」という前提で作られています。まずはあなたの「目的地」を決め、期日や小さなステップを設定しましょう。あとは、作業項目をワンタップするだけ。タイマーがあなたの航海(学習時間)を記録します。孤独な旅ではありません。いつでも立ち寄れる「港(コミュニティ)」には、同じように未来を目指す仲間が待っています。お互いに刺激し合いながら、次の島へと進みましょう。さあ、日々の学びを、あなただけの未来の航路にしていきませんか？",
+      en: "No need to worry about \"I can't stick with studying...\". This service is built on the premise that learning is meant to be interrupted. Start by deciding your \"destination,\" then set a deadline and a few small steps. After that, just tap your task once — a timer records your voyage (study time). It's not a solitary journey: a \"harbor\" (community) you can drop into anytime is full of fellow voyagers heading toward their own futures. Push each other forward as you sail on to the next island. So, why not turn your daily learning into a course toward your own future?",
+    },
     meta: "2026.07 / iOS",
     icon: asset("/icons/landfall.png"),
     repo: "https://github.com/TatsuyaAriyama/Landfall",
@@ -462,6 +466,7 @@ function AppBlock({ app, onOpen }) {
   const { lang, t } = useLang();
   const name = pick(app.name, lang);
   const tagline = pick(app.tagline, lang);
+  const description = pick(app.description, lang);
   const pills = pick(app.pills, lang);
   const shots = lang === "en" && app.shotsEn ? app.shotsEn : app.shots;
 
@@ -508,6 +513,8 @@ function AppBlock({ app, onOpen }) {
           </div>
         </div>
       </div>
+
+      {description && <p className="app-description">{description}</p>}
 
       <AppShots app={app} shots={shots} onOpen={onOpen} />
 

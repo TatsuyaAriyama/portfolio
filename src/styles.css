@@ -536,6 +536,14 @@ a {
   object-fit: cover;
 }
 
+.app-description {
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--ink-sub);
+  white-space: pre-line;
+  max-width: 640px;
+}
+
 /* ---- recommend pills ---- */
 .recommend {
   display: flex;
@@ -1074,6 +1082,10 @@ a {
   .app-tagline,
   .app-meta {
     font-size: 11px;
+  }
+  .app-description {
+    font-size: 13px;
+    line-height: 1.8;
   }
   .pill {
     font-size: 11px;
