@@ -28,16 +28,16 @@ const APPS = [
     shots: [
       asset("/aftide/01-work.jpg"),
       asset("/aftide/02-complete.jpg"),
+      asset("/aftide/05-destination.jpg"),
       asset("/aftide/03-community.jpg"),
       asset("/aftide/04-customize.jpg"),
-      asset("/aftide/05-destination.jpg"),
     ],
     shotsEn: [
       asset("/aftide/en/01-work.jpg"),
       asset("/aftide/en/02-complete.jpg"),
+      asset("/aftide/en/05-destination.jpg"),
       asset("/aftide/en/03-community.jpg"),
       asset("/aftide/en/04-customize.jpg"),
-      asset("/aftide/en/05-destination.jpg"),
     ],
     pills: {
       ja: [
