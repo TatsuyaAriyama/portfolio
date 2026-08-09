@@ -544,6 +544,50 @@ a {
   max-width: 640px;
 }
 
+/* ---- app preview movie ---- */
+.app-preview {
+  display: grid;
+  gap: 14px;
+  max-width: 920px;
+}
+
+.app-preview__heading {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.app-preview__label {
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.22em;
+  color: var(--daidai);
+}
+
+.app-preview__title {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--ink-sub);
+}
+
+.app-preview__frame {
+  overflow: hidden;
+  border: 1px solid rgba(31, 58, 49, 0.18);
+  border-radius: 26px;
+  background: #050706;
+  box-shadow: 0 20px 44px rgba(24, 58, 49, 0.16);
+}
+
+.app-preview__video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1920 / 886;
+  background: #000;
+  object-fit: contain;
+}
+
 /* ---- recommend pills ---- */
 .recommend {
   display: flex;
@@ -1011,6 +1055,9 @@ a {
     height: 304px;
     border-radius: 18px;
   }
+  .app-preview__frame {
+    border-radius: 20px;
+  }
   .about {
     padding-top: 88px;
   }
@@ -1101,6 +1148,18 @@ a {
   }
   .app-shots img {
     height: 228px;
+    border-radius: 14px;
+  }
+  .app-preview {
+    gap: 10px;
+  }
+  .app-preview__heading {
+    gap: 8px 12px;
+  }
+  .app-preview__title {
+    font-size: 13px;
+  }
+  .app-preview__frame {
     border-radius: 14px;
   }
   .log-row {

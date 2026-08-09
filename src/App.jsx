@@ -23,6 +23,8 @@ const APPS = [
     repo: "https://github.com/TatsuyaAriyama/Landfall",
     appStore: "https://apps.apple.com/jp/app/keelmira/id6791381131",
     live: "https://keelmira.com",
+    preview: asset("/keelmira/keelmira-app-preview.mp4"),
+    previewPoster: asset("/keelmira/keelmira-app-preview-poster.jpg"),
     shots: [
       asset("/aftide/01-work.jpg"),
       asset("/aftide/02-complete.jpg"),
@@ -237,6 +239,9 @@ const UI = {
     aboutLabel: "航海士",
     aboutTitle: "つくっている人。",
     recommend: "こんな人におすすめ：",
+    previewLabel: "紹介ムービー",
+    previewTitle: "KeelMiraの航海を、映像で。",
+    previewAria: (n) => `${n} の紹介ムービー`,
     web: "web",
     appStoreAria: (n) => `${n} を App Store で見る`,
     shotAria: (n, i) => `${n} のスクリーンショット ${i} を拡大`,
@@ -279,6 +284,9 @@ const UI = {
     aboutLabel: "Sailor",
     aboutTitle: "The one who builds them.",
     recommend: "Made for people who:",
+    previewLabel: "APP PREVIEW",
+    previewTitle: "See the KeelMira voyage in motion.",
+    previewAria: (n) => `${n} app preview`,
     web: "web",
     appStoreAria: (n) => `View ${n} on the App Store`,
     shotAria: (n, i) => `Enlarge ${n} screenshot ${i}`,
@@ -466,6 +474,33 @@ function AppShots({ app, shots, onOpen }) {
   );
 }
 
+function AppPreview({ app, name }) {
+  const { t } = useLang();
+
+  if (!app.preview) return null;
+
+  return (
+    <section className="app-preview" aria-label={t.previewAria(name)}>
+      <div className="app-preview__heading">
+        <p className="app-preview__label">{t.previewLabel}</p>
+        <p className="app-preview__title">{t.previewTitle}</p>
+      </div>
+      <div className="app-preview__frame">
+        <video
+          className="app-preview__video"
+          controls
+          playsInline
+          preload="metadata"
+          poster={app.previewPoster}
+          aria-label={t.previewAria(name)}
+        >
+          <source src={app.preview} type="video/mp4" />
+        </video>
+      </div>
+    </section>
+  );
+}
+
 function AppBlock({ app, onOpen }) {
   const { lang, t } = useLang();
   const name = pick(app.name, lang);
@@ -521,6 +556,8 @@ function AppBlock({ app, onOpen }) {
       {description && <p className="app-description">{description}</p>}
 
       <AppShots app={app} shots={shots} onOpen={onOpen} />
+
+      <AppPreview app={app} name={name} />
 
       <div className="recommend">
         <span className="recommend-label">{t.recommend}</span>
